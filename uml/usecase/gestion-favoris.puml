@@ -1,0 +1,20 @@
+@startuml "Système de Gestion RH d'une Entreprise: Gestion des Favoris"
+left to right direction
+actor "Agent RH" as Agent
+
+rectangle "Système de Gestion des Favoris" {
+    usecase "Consulter fonctionnalités favoris" as UC2
+    usecase "Ajouter fonctionnalité au favoris" as UC3
+    usecase "Supprimer fonctionnalité au favoris" as UC4
+    usecase "Remettre les fonctionnalités par défaut" as UC5
+    usecase "Rechercher fonctionnalité" as UC6
+}
+    
+Agent --> UC2
+Agent --> UC3
+Agent --> UC4
+Agent --> UC5
+Agent --> UC6
+
+
+@enduml

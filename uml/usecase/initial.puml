@@ -1,0 +1,313 @@
+@startuml "Système de Gestion RH d'une Entreprise"
+left to right direction
+actor "Agent RH" as Agent
+actor "Manager" as Manager
+actor "Candidat" as Candidat
+
+actor "Systeme alerte" as SystemeAlert <<secondaire>> #gray
+
+
+rectangle "Système de Gestion RH d'une Entreprise" {
+    package "Système de gestion des Favoris" {
+        usecase "Gérer les favoris" as UC1
+        usecase "Consulter fonctionnalités favoris" as UC1_1
+        usecase "Ajouter fonctionnalité au favoris" as UC1_2
+        usecase "Supprimer fonctionnalité au favoris" as UC1_3
+        usecase "Remettre les fonctionnalités par défaut" as UC1_4
+        usecase "Rechercher fonctionnalité" as UC1_5
+    }
+    package "Système de Gestion des Tables"{
+        usecase "Gérer les tables" as UC2
+        usecase "Gérer les employés" as UC2_1
+        usecase "Ajouter un employé" as UC2_1_1
+        usecase "Modifier un employé" as UC2_1_2
+        usecase "Supprimer un employé" as UC2_1_3
+        usecase "Rechercher un employé" as UC2_1_4
+        usecase "Consulter un employé" as UC2_1_5
+        usecase "Imprimer un employé" as UC2_1_6
+
+        usecase "Gérer les services" as UC2_2
+        usecase "Ajouter un service" as UC2_2_1
+        usecase "Modifier un service" as UC2_2_2
+        usecase "Supprimer un service" as UC2_2_3
+        usecase "Rechercher un service" as UC2_2_4
+        usecase "Consulter un service" as UC2_2_5
+        usecase "Imprimer un service" as UC2_2_6
+
+        usecase "Gérer les congés" as UC2_3
+        usecase "Ajouter un congé" as UC2_3_1
+        usecase "Modifier un congé" as UC2_3_2
+        usecase "Supprimer un congé" as UC2_3_3
+        usecase "Rechercher un congé" as UC2_3_4
+        usecase "Consulter un congé" as UC2_3_5
+        usecase "Imprimer un congé" as UC2_3_6
+
+        usecase "Gérer les contrats" as UC2_4
+        usecase "Ajouter un contrat" as UC2_4_1
+        usecase "Modifier un contrat" as UC2_4_2
+        usecase "Supprimer un contrat" as UC2_4_3
+        usecase "Rechercher un contrat" as UC2_4_4
+        usecase "Consulter un contrat" as UC2_4_5
+        usecase "Imprimer un contrat" as UC2_4_6
+
+        usecase "Gérer les salaires" as UC2_5
+        usecase "Ajouter un salaire" as UC2_5_1
+        usecase "Modifier un salaire" as UC2_5_2
+        usecase "Supprimer un salaire" as UC2_5_3
+        usecase "Rechercher un salaire" as UC2_5_4
+        usecase "Consulter un salaire" as UC2_5_5
+        usecase "Imprimer un salaire" as UC2_5_6
+
+        usecase "Gérer les recrutements" as UC2_6
+        usecase "Ajouter un recrutement" as UC2_6_1
+        usecase "Modifier un recrutement" as UC2_6_2
+        usecase "Supprimer un recrutement" as UC2_6_3
+        usecase "Rechercher un recrutement" as UC2_6_4
+        usecase "Consulter un recrutement" as UC2_6_5
+        usecase "Imprimer un recrutement" as UC2_6_6
+    }
+    package "Système de Gestion des Employés" {
+        usecase "Consulter fiche employé" as UC3_1
+        usecase "Consulter rapport de performance" as UC3_2
+        usecase "Evaluer employé" as UC3_3
+        usecase "Rechercher rapport de performance" as UC3_4
+        usecase "Générer un rapport de performance" as UC3_5
+    }
+    package "Système de Gestion des Congés"{
+        usecase "Donner congé" as UC4
+        usecase "Donner congé annuel" as UC4_1
+        usecase "Donner congé maladie" as UC4_2
+        usecase "Donner congé paternité/maternité" as UC4_3
+        usecase "Donner congé sans solde" as UC4_4
+        usecase "Suivre solde congé" as UC5
+    }
+    package "Système de Gestion des Salaires et de la Paie"{
+        usecase "Calculer salaire" as UC6
+        usecase "Générer fiche de paie" as UC7
+        usecase "Créer une prime de performance" as UC8
+        usecase "Signaler absence" as UC9
+    }
+    package "Système de Gestion des Contrats"{
+        usecase "Faire un alerte pour notifier fin de période d'essaie" as UC10
+        usecase "Faire un alert pour notifier renouvellement de contract" as UC11
+        usecase "Archiver contrat" as UC12
+        usecase "Vérifier contrat" as UC13
+    }
+    package "Système d'Evaluation des Performances"{
+        usecase "Lancer evaluation périodique des employés par les managers" as UC14
+        usecase "Envoyer rapport d'évaluation" as UC15
+    }
+    package "Système de Gestion des Recrutements"{
+        usecase "Lancer un offre d'emploi" as UC16
+        usecase "Soumettre candidature" as UC17
+        usecase "Gestion des entretiens" as UC19
+        usecase "Ajouter entretien" as UC19_1
+        usecase "Modifier entretien" as UC19_2
+        usecase "Supprimer entretien" as UC19_3
+        usecase "Rechercher entretien" as UC19_4
+        usecase "Consulter entretien" as UC19_5
+    }
+    package "Système de Gestion d'Analyse et Tableaux de bord"{
+        usecase "Gérer analyses et tableaux de bord" as UC20
+        usecase "Analyser les employés" as UC20_1
+        usecase "Analyser par effectif" as UC20_1_1
+        usecase "Analyser par diversité" as UC20_1_2
+        usecase "Analyser par top performer" as UC20_1_3
+
+    }
+    package "Système des Gestion Comptes"{
+        usecase "Envoyer code de confirmation par mail" as UC21
+        usecase "S'authentifier" as UC18
+        usecase "Créer un compte" as UC22
+        usecase "Rechercher compte" as UC23
+
+    }
+}
+Agent --> UC1
+
+UC1 <|-- UC1_1 : <<extends>>
+UC1 <|-- UC1_2 : <<extends>>
+UC1 <|-- UC1_3 : <<extends>>
+UC1 <|-- UC1_4 : <<extends>>
+UC1 <|-- UC1_5 : <<extends>>
+UC1_1 --> UC1_5 : <<includes>>
+UC1_2 --> UC1_5 : <<includes>>
+UC1_3 --> UC1_5 : <<includes>>
+UC1_4 --> UC1_5 : <<includes>>
+
+
+Agent --> UC2
+
+UC2 <|-- UC2_1 : <<extends>>
+
+UC2_1 <|-- UC2_1_1 : <<extends>>
+UC2_1 <|-- UC2_1_2 : <<extends>>
+UC2_1 <|-- UC2_1_3 : <<extends>>
+UC2_1 <|-- UC2_1_4 : <<extends>>
+UC2_1 <|-- UC2_1_5 : <<extends>>
+UC2_1 <|-- UC2_1_6 : <<extends>>
+UC2_1_1 --> UC2_1_4 : <<includes>>
+UC2_1_2 --> UC2_1_4 : <<includes>>
+UC2_1_3 --> UC2_1_4 : <<includes>>
+UC2_1_4 --> UC2_2_4 : <<includes>>
+UC2_1_5 --> UC2_1_4 : <<includes>>
+UC2_1_6 --> UC2_1_4 : <<includes>>
+
+
+UC2 <|-- UC2_2 : <<extends>>
+
+UC2_2 <|-- UC2_2_1 : <<extends>>
+UC2_2 <|-- UC2_2_2 : <<extends>>
+UC2_2 <|-- UC2_2_3 : <<extends>>
+UC2_2 <|-- UC2_2_4 : <<extends>>
+UC2_2 <|-- UC2_2_5 : <<extends>>
+UC2_2 <|-- UC2_2_6 : <<extends>>
+UC2_2_1 --> UC2_2_4 : <<includes>>
+UC2_2_2 --> UC2_2_4 : <<includes>>
+UC2_2_3 --> UC2_2_4 : <<includes>>
+UC2_2_5 --> UC2_2_4 : <<includes>>
+UC2_2_6 --> UC2_2_4 : <<includes>>
+
+UC2 <|-- UC2_3 : <<extends>>
+
+UC2_3 <|-- UC2_3_1 : <<extends>>
+UC2_3 <|-- UC2_3_2 : <<extends>>
+UC2_3 <|-- UC2_3_3 : <<extends>>
+UC2_3 <|-- UC2_3_4 : <<extends>>
+UC2_3 <|-- UC2_3_5 : <<extends>>
+UC2_3 <|-- UC2_3_6 : <<extends>>
+UC2_3_1 --> UC2_3_4 : <<includes>>
+UC2_3_2 --> UC2_3_4 : <<includes>>
+UC2_3_3 --> UC2_3_4 : <<includes>>
+UC2_3_4 --> UC2_1_4 : <<includes>>
+UC2_3_5 --> UC2_3_4 : <<includes>>
+UC2_3_6 --> UC2_3_4 : <<includes>>
+
+
+UC2 <|-- UC2_4 : <<extends>>
+
+UC2_4 <|-- UC2_4_1 : <<extends>>
+UC2_4 <|-- UC2_4_2 : <<extends>>
+UC2_4 <|-- UC2_4_3 : <<extends>>
+UC2_4 <|-- UC2_4_4 : <<extends>>
+UC2_4 <|-- UC2_4_5 : <<extends>>
+UC2_4 <|-- UC2_4_6 : <<extends>>
+UC2_4_1 --> UC2_4_4 : <<includes>>
+UC2_4_2 --> UC2_4_4 : <<includes>>
+UC2_4_3 --> UC2_4_4 : <<includes>>
+UC2_4_3 --> UC12 : <<includes>>
+UC2_4_4 --> UC2_1_4 : <<includes>>
+UC2_4_5 --> UC2_4_4 : <<includes>>
+UC2_4_6 --> UC2_4_4 : <<includes>>
+
+UC2 <|-- UC2_5 : <<extends>>
+
+UC2_5 <|-- UC2_5_1 : <<extends>>
+UC2_5 <|-- UC2_5_2 : <<extends>>
+UC2_5 <|-- UC2_5_3 : <<extends>>
+UC2_5 <|-- UC2_5_4 : <<extends>>
+UC2_5 <|-- UC2_5_5 : <<extends>>
+UC2_5 <|-- UC2_5_6 : <<extends>>
+UC2_5_1 --> UC2_5_4 : <<includes>>
+UC2_5_2 --> UC2_5_4 : <<includes>>
+UC2_5_3 --> UC2_5_4 : <<includes>>
+UC2_5_4 --> UC2_1_4 : <<includes>>
+UC2_5_5 --> UC2_5_4 : <<includes>>
+UC2_5_6 --> UC2_5_4 : <<includes>>
+
+UC2 <|-- UC2_6 : <<extends>>
+
+UC2_6 <|-- UC2_6_1 : <<extends>>
+UC2_6 <|-- UC2_6_2 : <<extends>>
+UC2_6 <|-- UC2_6_3 : <<extends>>
+UC2_6 <|-- UC2_6_4 : <<extends>>
+UC2_6 <|-- UC2_6_5 : <<extends>>
+UC2_6 <|-- UC2_6_6 : <<extends>>
+UC2_6_1 --> UC2_6_4 : <<includes>>
+UC2_6_2 --> UC2_6_4 : <<includes>>
+UC2_6_3 --> UC2_6_4 : <<includes>>
+UC2_6_4 --> UC2_1_4 : <<includes>>
+UC2_6_5 --> UC2_6_4 : <<includes>>
+UC2_6_6 --> UC2_6_4 : <<includes>>
+
+
+Agent --> UC3_1
+Agent --> UC3_2
+Manager --> UC3_2
+Manager --> UC3_3
+
+UC3_1 --> UC2_1_4 : <<includes>>
+UC3_2 --> UC2_1_4 : <<includes>>
+UC3_3 --> UC2_1_4 : <<includes>>
+UC3_2 --> UC3_4 : <<includes>>
+UC3_4 --> UC2_1_4 : <<includes>>
+UC3_5 --> UC3_4 : <<includes>>
+UC3_3 <|-- UC3_5 : <<extends>>
+
+
+Agent --> UC4
+Agent --> UC5
+UC4 --> UC2_3_1 : <<includes>>
+UC4_1 --|> UC4
+UC4_2 --|> UC4
+UC4_3 --|> UC4
+UC4_4 --|> UC4
+UC5 --> UC2_3_4 : <<includes>>
+UC5 --> UC2_5_4 : <<includes>>
+
+Agent --> UC6
+Agent --> UC7
+Agent --> UC8
+Agent --> UC9
+
+UC6 --> UC2_5_4 : <<includes>>
+UC7 --> UC6 : <<includes>>
+UC7 --> UC2_1_4 : <<includes>>
+UC8 --> UC3_4 : <<includes>>
+UC9 --> UC2_5_4 : <<includes>>
+
+SystemeAlert --> UC13 : [Tous les jours]
+
+UC13 --> UC2_4_4 : <<includes>>
+UC11 --|> UC13 : <<extends>>
+UC10 --|> UC13 : <<extends>>
+
+SystemeAlert --> UC14 : [Tous semmestre/année]
+Agent --> UC15
+UC15 --> UC3_4 : <<include>>
+
+Agent --> UC16
+Agent --> UC19
+Candidat --> UC17
+
+UC17 --> UC18 : <<includes>>
+UC19 <|-- UC19_1 : <<extends>>
+UC19 <|-- UC19_2 : <<extends>>
+UC19 <|-- UC19_3 : <<extends>>
+UC19 <|-- UC19_4 : <<extends>>
+UC19_4 <-- UC19_1 : <<includes>>
+UC19_4 <-- UC19_2 : <<includes>>
+UC19_4 <-- UC19_3 : <<includes>>
+UC19_4 <-- UC19_5 : <<includes>>
+UC16 --> UC2_6_1 : <<includes>>
+
+Agent --> UC20
+
+UC20_1 --|> UC20 : <<extends>>
+UC20_1 <|-- UC20_1_1 : <<extends>>
+UC20_1 <|-- UC20_1_2 : <<extends>>
+UC20_1 <|-- UC20_1_3 : <<extends>>
+
+UC20_1_1 --> UC2_1_4 : <<includes>>
+UC20_1_2 --> UC2_1_4 : <<includes>>
+UC20_1_3 --> UC3_4 : <<includes>>
+
+SystemeAlert --> UC21 : [Après création de compte]
+Candidat --> UC22
+
+UC21 --|> UC22 : <<extends>>
+UC22 --> UC23 : <<includes>>
+UC18 --> UC23 : <<includes>>
+
+
+@enduml
