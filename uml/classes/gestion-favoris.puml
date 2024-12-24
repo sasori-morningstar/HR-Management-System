@@ -1,0 +1,64 @@
+@startuml
+
+skin rose
+
+title Gestion des Favoris - Class Diagram
+
+
+class Agent {
+  -Int idAgent
+  -String nomAgent
+  -String prenomAgent
+  -Date dateNaissanceAgent
+  -Date dateEmbaucheAgent
+  -String adresseAgent
+  -String numTelephoneAgent
+  -String photoAgent
+  +Int getIdAgent()
+  +String getNomAgent()
+  +String getPrenomAgent()
+  +Date getDateNaissanceAgent()
+  +Date getDateEmbaucheAgent()
+  +String getAdresseAgent()
+  +String getNumTelephoneAgent()
+  +String getPhotoAgent()
+  +void setIdAgent(Int idAgent)
+  +void setNomAgent(String nomAgent)
+  +void setPrenomAgent(String prenomAgent)
+  +void setDateNaissanceAgent(Date dateNaissanceAgent)
+  +void setDateEmbaucheAgent(Date dateEmbauche)
+  +void setAdresseAgent(String adresse)
+  +void setNumTelephoneAgent(String numTelephoneAgent)
+  +void setPhotoAgent(String photoAgent)
+}
+
+class Fonctionnalite {
+  -Int idFonctionnalite
+  -String nomFonctionnalite
+  -String descFonctionnalite
+  -String logoFonctionnalite
+  -String lienFonctionnalite
+  +Int getIdFonctionnalite()
+  +String getNomFonctionnalite()
+  +String getDescFonctionnalite()
+  +String getLogoFonctionnalite()
+  +String getLienFonctionnalite()
+  +void setIdFonctionnalite(Int idFonctionnalite)
+  +void setNomFonctionnalite(String nomFonctionnalite)
+  +void setDescFonctionnalite(String descFonctionnalite)
+  +void setLogoFonctionnalite(String logoFonctionnalite)
+  +void setLienFonctionnalite(String lienFonctionnalite)
+}
+
+BarreFavoris "1" o-up- "N" Fonctionnalite
+BarreFavoris "1" -up-* "1" Agent
+
+class BarreFavoris {
+  +void ajouterFonctionnalite(Fonctionnalite fonctionnalite)
+  +void supprimerFonctionnalite(Fonctionnalite fonctionnalite)
+  +void remettreParDefaut()
+  +List<Fonctionnalite> rechercherFonctionnalite(String nomFonctionnalite)
+}
+
+
+@enduml
