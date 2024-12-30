@@ -1,0 +1,58 @@
+@startuml
+skin rose
+
+title Diagramme des Classes - Gestion RH
+
+class Employee {
+  - ID_Employee: int
+  - Nom: string
+  - Prenom: string
+  - Date_Naissance: date
+  - Adresse: string
+  - Telephone: string
+  - Email: string
+  + ajouterFormation()
+  + ajouterEvaluation()
+  + ajouterCompetence()
+}
+
+class Formation {
+  - Nom_Formation: string
+  - Date_Debut: date
+  - Date_Fin: date
+  - Domaine: string
+}
+
+class Competence {
+  - Nom_Competence: string
+  - Niveau: string
+}
+
+class Manager {
+  - ID_Manager: int
+  - Nom: string
+  - Prenom: string
+  + evaluerEmploye()
+}
+
+class Evaluation {
+  - Date: date
+  - Score: int
+  - Commentaires: string
+  - Objectifs_Atteints: boolean
+  + genererRapport()
+}
+
+class RapportPerformance {
+  - Date_Generation: date
+  - Contenu: string
+  + genererRapport()
+}
+
+Employee "1" -- "*" Formation : Suit
+Employee "1" -- "*" Competence : Possede
+Manager "1" -- "*" Evaluation : Remplir
+Employee "1" -- "*" Evaluation : A
+Evaluation "1" -- "1" RapportPerformance : Generer
+
+@enduml

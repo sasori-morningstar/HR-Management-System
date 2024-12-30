@@ -1,0 +1,24 @@
+@startuml "Système de Gestion des Congés d'une Entreprise"
+left to right direction
+actor "Employé" as Employe
+actor "Responsable RH" as ResponsableRH
+
+rectangle "Système de Gestion des Congés" {
+    usecase "Faire une demande de congé" as UC1
+    usecase "Consulter le solde de congés" as UC2
+    usecase "Approuver une demande de congé" as UC3
+    usecase "Refuser une demande de congé" as UC4
+    usecase "Consulter les demandes de congé" as UC5
+    usecase "Consulter l'historique des congés" as UC6
+   
+}
+
+Employe --> UC1
+Employe --> UC2
+
+ResponsableRH --> UC3
+ResponsableRH --> UC4
+ResponsableRH --> UC5
+ResponsableRH --> UC6
+
+@enduml

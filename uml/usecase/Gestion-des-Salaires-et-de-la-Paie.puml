@@ -1,0 +1,22 @@
+@startuml "Système de Gestion RH d'une Entreprise: Gestion des Salaires et de la Paie"
+left to right direction
+actor "Agent RH" as Agent
+actor "Employé" as Employe
+
+rectangle "Gestion des Salaires et de la Paie" {
+    usecase "Calcul des salaires" as UC1
+    usecase "Génération des fiches de paie" as UC2
+    usecase "Gestion des primes et avantages" as UC3
+    usecase "Pointage et gestion des absences" as UC4
+    usecase "Demander une avance sur salaire" as UC5
+}
+
+Agent --> UC1
+Agent --> UC2
+Agent --> UC3
+Agent --> UC4
+
+Employe --> UC5
+Employe --> UC3
+
+@enduml

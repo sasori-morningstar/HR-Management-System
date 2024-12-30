@@ -1,0 +1,29 @@
+@startuml "Système de Gestion RH : Suivi des Employés et Évaluations"
+left to right direction
+
+actor "Agent RH" as Agent
+actor "Manager" as Manager
+
+rectangle "Système de Gestion RH" {
+    usecase "Consulter fiche employé" as UC1
+    usecase "Modifier les informations d'un employé" as UC2
+    usecase "Ajouter un nouvel employé" as UC3
+    usecase "Supprimer un employé" as UC4
+    usecase "Créer une évaluation" as UC5
+    usecase "Remplir un formulaire d'évaluation" as UC6
+    usecase "Générer un rapport de performance" as UC7
+    usecase "Suivre les objectifs et compétences" as UC8
+}
+
+Agent --> UC1
+Agent --> UC2
+Agent --> UC3
+Agent --> UC4
+
+Manager --> UC1
+Manager --> UC5
+Manager --> UC6
+Manager --> UC7
+Manager --> UC8
+
+@enduml

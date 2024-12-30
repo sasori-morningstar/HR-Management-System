@@ -1,0 +1,48 @@
+@startuml
+
+skin rose
+
+title Gestion des Congés - Diagramme de Classes
+
+class Employe {
+  -Int idEmploye
+  -String nomEmploye
+  -String prenomEmploye
+  -Date dateNaissance
+  -Date dateEmbauche
+  -String adresse
+  -String telephone
+  -String email
+}
+
+class TypeConges {
+  -String nomTypeConges
+  -String descriptionTypeConges
+}
+
+class DemandeCongé {
+  -Date dateDebutCongé
+  -Date dateFinCongé
+  -Int joursUtilises
+  -Int joursRestants
+  -Int joursCumules
+  -String etatDemande
+}
+
+class ResponsableRH {
+  -Int idResponsable
+  -String nomResponsable
+  -String prenomResponsable
+  -String email
+  -String telephone
+  +approuverDemande(DemandeCongé demande)
+  +refuserDemande(DemandeCongé demande)
+  +consulterSoldeCongé(Employe employe)
+}
+
+Employe "1" o-- "N" DemandeCongé
+DemandeCongé "1" o-- "N" TypeConges
+ResponsableRH "1" o-- "N" DemandeCongé
+
+@enduml
+ 

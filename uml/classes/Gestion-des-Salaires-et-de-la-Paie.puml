@@ -1,0 +1,59 @@
+@startuml
+
+skin rose
+
+title Gestion des Salaires et de la Paie - Class Diagram
+
+
+class Employe {
+    +int id
+    +String nom
+    +String prenom
+    +float salaireDeBase
+    +float salaireTotal
+    +boolean[] absences // Liste des absences (booléens)
+    +float[] primes
+    +boolean avanceDemandee
+    +float avanceMontant
+    +void calculerSalaire()
+    +void ajouterPrime(float prime)
+    +void signalerAbsence(int jour)
+    +void demanderAvance(float montant)
+}
+
+class Prime {
+    +String typePrime
+    +float montant
+    +String description
+}
+
+class FicheDePaie {
+    +int mois
+    +int annee
+    +float salaireDeBase
+    +float primesTotal
+    +float absencesTotal
+    +float salaireFinal
+    +void genererFiche(Employe employe)
+}
+
+class SystèmePointage {
+    +void enregistrerHeureTravail(int jour, boolean estPresent)
+    +void calculerAbsence(Employe employe)
+}
+
+class AvanceSalaire {
+    +float montant
+    +String justification
+    +boolean approuve
+    +void demanderAvance(Employe employe, float montant, String justification)
+}
+
+
+Employe "1" -- "*" Prime 
+Employe "1" -- "*" FicheDePaie
+Employe "1" -- "1" AvanceSalaire
+Employe "1" -- "*" SystèmePointage
+
+
+@enduml
