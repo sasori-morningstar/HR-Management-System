@@ -1,0 +1,39 @@
+@startuml
+
+skin rose
+
+title Gestion des recrutements - Class Diagram
+
+class Agent {
+  - Int idAgent
+  - String nomAgent
+  - String prenomAgent
+  - Date dateNaissanceAgent
+  - Date dateEmbaucheAgent
+  - String adresseAgent
+  - String numTelephoneAgent
+  - String photoAgent
+}
+
+class OffreEmploi {
+  - Int idOffre
+  - String titreOffre
+  - String descriptionOffre
+  - Date datePublication
+}
+
+class Candidature {
+  - Date dateCandidature
+  - String statutCandidature
+}
+
+class Entretien {
+  - Date dateEntretien
+  - String resultatEntretien
+}
+
+Agent "1" -- "0..*" Candidature : soumet
+OffreEmploi "1" -- "0..*" Candidature : concerne
+Candidature "1" -- "1" Entretien : planifie
+
+@enduml

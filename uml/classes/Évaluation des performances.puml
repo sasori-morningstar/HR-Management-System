@@ -1,0 +1,56 @@
+@startuml
+skin rose
+title Évaluation des Performances - Diagramme de Classes
+
+class Agent {
+  -Int idAgent
+  -String nomAgent
+  -String prenomAgent
+  -Date dateNaissanceAgent
+  -Date dateEmbaucheAgent
+  -String adresseAgent
+  -String numTelephoneAgent
+  -String photoAgent
+  +Int getIdAgent()
+  +String getNomAgent()
+  +String getPrenomAgent()
+  +Date getDateNaissanceAgent()
+  +Date getDateEmbaucheAgent()
+  +String getAdresseAgent()
+  +String getNumTelephoneAgent()
+  +String getPhotoAgent()
+  +void setIdAgent(Int idAgent)
+  +void setNomAgent(String nomAgent)
+  +void setPrenomAgent(String prenomAgent)
+  +void setDateNaissanceAgent(Date dateNaissanceAgent)
+  +void setDateEmbaucheAgent(Date dateEmbaucheAgent)
+  +void setAdresseAgent(String adresseAgent)
+  +void setNumTelephoneAgent(String numTelephoneAgent)
+  +void setPhotoAgent(String photoAgent)
+}
+
+class EvaluationPerformance {
+  -Date dateEvaluation
+  -String periode
+  -String commentaires
+  -Int score
+  +Int getIdEvaluation()
+  +Date getDateEvaluation()
+  +String getPeriode()
+  +String getCommentaires()
+  +Int getScore()
+  +void setIdEvaluation(Int idEvaluation)
+  +void setDateEvaluation(Date dateEvaluation)
+  +void setPeriode(String periode)
+  +void setCommentaires(String commentaires)
+  +void setScore(Int score)
+}
+
+class RapportEvaluation {
+  +void genererRapport(EvaluationPerformance evaluation)
+}
+
+Agent "1" -- "N" EvaluationPerformance : évalue
+EvaluationPerformance "1" -- "1" RapportEvaluation : génère
+
+@enduml

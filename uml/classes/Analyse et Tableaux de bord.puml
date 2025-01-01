@@ -1,0 +1,59 @@
+@startuml
+
+skin rose
+
+title  Analyse et Tableaux de Bord - Class Diagram 
+
+class Agent {
+  -Int idAgent
+  -String nomAgent
+  -String prenomAgent
+  -Date dateNaissanceAgent
+  -Date dateEmbaucheAgent
+  -String adresseAgent
+  -String numTelephoneAgent
+  -String photoAgent
+}
+
+class TypeContrat {
+  -String typeContrat
+}
+
+class AnalyseEmploye {
+  -Int effectifTotal
+  -Int effectifCDI
+  -Int effectifCDD
+  -Int effectifStagiaire
+}
+
+class Diversite {
+  -Int nbHommes
+  -Int nbFemmes
+  -Int nbJeunes
+  -Int nbAgeMoyen
+  -Int nbAncienneteMoyenne
+}
+
+class TopPerformeurs {
+  -List<Agent> agents
+}
+
+class AnalyseActivite {
+  -Date periode
+  -Int nbAbsences
+}
+
+class Recrutement {
+  -Int tauxEvolutionRecrutes
+  -Int tauxEvolutionOffres
+}
+
+Agent "1" -- "*" AnalyseEmploye
+Agent "1" -- "*" Diversite
+Agent "1" -- "*" TopPerformeurs
+Agent "1" -- "*" AnalyseActivite
+Agent "1" -- "*" Recrutement
+TypeContrat "1" -- "*" AnalyseEmploye
+Recrutement "1" -- "*" AnalyseActivite
+
+@enduml

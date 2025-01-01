@@ -1,0 +1,27 @@
+@startuml "Système de Gestion RH: Évaluation des Performances"
+left to right direction
+
+actor "Manager" as Manager
+actor "Agent RH" as Agent
+actor "Employé" as Employe
+
+rectangle "Système d'Évaluation des Performances" {
+    usecase "Réaliser évaluation annuelle" as UC1
+    usecase "Réaliser évaluation semestrielle" as UC2
+    usecase "Personnaliser critères d'évaluation" as UC3
+    usecase "Générer rapport d'évaluation" as UC4
+    usecase "Partager rapport avec employé" as UC5
+    usecase "Partager rapport avec manager" as UC6
+    usecase "Consulter rapport d'évaluation" as UC7
+}
+
+Manager --> UC1
+Manager --> UC2
+Manager --> UC3
+Manager --> UC4
+Agent --> UC5
+Agent --> UC6
+Employe --> UC7
+Agent --> UC4
+
+@enduml

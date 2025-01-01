@@ -1,0 +1,22 @@
+@startuml "Système de Gestion RH d'une Entreprise: Gestion des Recrutements"
+left to right direction
+actor "Responsable Recrutement" as Responsable
+actor "Candidat" as Candidat
+
+rectangle "Système de Gestion des Recrutements" {
+    usecase "Publier une offre d'emploi" as UC1
+    usecase "Soumettre une candidature" as UC2
+    usecase "Suivre l'état de la candidature" as UC3
+    usecase "Planifier un entretien" as UC4
+    usecase "Suivre les entretiens" as UC5
+}
+
+Responsable --> UC1
+Responsable --> UC4
+Responsable --> UC5
+Candidat --> UC2
+Candidat --> UC3
+Responsable --> UC3
+
+@enduml
+

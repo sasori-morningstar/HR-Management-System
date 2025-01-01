@@ -1,0 +1,27 @@
+@startuml "Système de Gestion RH d'une Entreprise: Analyse et Tableaux de bord"
+left to right direction
+actor "Agent RH" as Agent
+
+rectangle "Système d'Analyse RH" {
+    usecase "Afficher Effectifs Totaux" as UC1
+    usecase "Répartition des Employés par Sexe" as UC2
+    usecase "Répartition des Employés par Âge" as UC3
+    usecase "Répartition des Employés par Ancienneté" as UC4
+    usecase "Top Performeurs" as UC5
+    usecase "Analyse des Absences" as UC6
+    usecase "Evolution des Recrutements" as UC7
+    usecase "Evolution des Offres d'Emploi" as UC8
+    usecase "Visualiser les Graphiques" as UC9
+}
+
+Agent --> UC1
+Agent --> UC2
+Agent --> UC3
+Agent --> UC4
+Agent --> UC5
+Agent --> UC6
+Agent --> UC7
+Agent --> UC8
+Agent --> UC9
+
+@enduml
