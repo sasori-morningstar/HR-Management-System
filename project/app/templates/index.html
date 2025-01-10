@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Plateforme de RH Manini Inc - Démarrez votre carrière">
+    <title>RH Manini Inc - Page d'accueil</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="static/css/style.css" as="style">
+    <link rel="preload" href="static/img/background-img.jpg" as="image">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <div class="logo">
+                <h1>RH</h1>
+                <h3 class="company-name">@Manini Inc</h3>
+            </div>
+            <nav class="auth-btns" aria-label="Authentification">
+                <ul>
+                    <li><a href="#" class="btn-register">S'enregistrer</a></li>
+                    <li><a href="#" class="btn-login">S'authentifier</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="main-content">
+                <img src="static/img/landing-page-pic1.png" alt="Réseau des employés collaborant ensemble" />
+                <h2 class="main-heading">Qu'attendez vous? <span class="blue-text">Rejoignez-nous</span> maintenant !
+                </h2>
+                <form class="search-bar-container" method="GET" action="#" role="search">
+                    <input type="search" id="job-search" class="search-bar" placeholder="Quel poste recherchez-vous ?"
+                        aria-label="Rechercher un poste">
+                    <button class="search-bar-btn" type="submit" aria-label="Rechercher">
+                        <img class="icon" src="static/icons/search.png" alt="Search" aria-hidden="true"/>
+                    </button>
+                </form>
+                <a class="voir-offres-btn" href="#">
+                    <img class="icon" src="static/icons/log.svg" alt="Recrutement" aria-hidden="true"/>
+                    <span>Voir tous les offres disponibles</span>
+                </a>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

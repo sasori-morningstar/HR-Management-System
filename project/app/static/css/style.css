@@ -1,0 +1,248 @@
+/* Font Loading */
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Rye&display=swap');
+/* Custom Properties */
+:root {
+    /* Colors */
+    --color-primary: rgb(88, 86, 214);
+    --color-primary-light: rgba(88, 86, 214, 0.8);
+    --color-secondary: rgb(52, 199, 89);
+    --color-background: rgba(0, 0, 88, 0.95);
+    --color-white: #ffffff;
+    --color-gray-100: #f3f4f6;
+
+    /* Typography */
+    --font-primary: "PT Serif", serif;
+    --font-logo: "Rye", serif;
+    --font-size-base: 1.5rem;
+    --font-size-h1: 4rem;
+    --font-size-h2: 2.5rem;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+
+    /* Border */
+    --border-radius: 1rem;
+    --border-width: 2px;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base Styles */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: url('../img/background-img.jpg') no-repeat center center/cover;
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Layout */
+.main-container {
+    background-color: var(--color-background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-logo);
+}
+
+.logo h1 {
+    font-size: var(--font-size-h1);
+}
+
+.logo h1,
+.logo h3 {
+    font-weight: 400;
+}
+
+/* Navigation */
+.auth-btns ul {
+    display: flex;
+    gap: var(--spacing-sm);
+    list-style: none;
+}
+
+
+.btn-register,
+.btn-login {
+    color: var(--color-white);
+    text-decoration: none;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: var(--border-width) solid var(--color-white);
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    width: 100%;
+    display: inline-block;
+}
+
+.btn-register:hover,
+.btn-register:focus-visible,
+.btn-login:hover,
+.btn-login:focus-visible {
+    background-color: var(--color-white);
+    color: var(--color-background);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+/* Main Content */
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
+}
+
+.main-content {
+    text-align: center;
+    width: 100%;
+    max-width: 666px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.main-heading {
+    font-size: var(--font-size-h2);
+    line-height: 1.2;
+}
+
+.blue-text {
+    color: var(--color-primary);
+}
+
+/* Search Form */
+.search-bar-container {
+    border: var(--border-width) solid var(--color-primary);
+    padding: var(--spacing-sm);
+    display: flex;
+    border-radius: var(--border-radius);
+    gap: var(--spacing-sm);
+}
+
+#job-search {
+    flex: 1;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#job-search:focus {
+    border-color: var(--color-primary);
+}
+
+.search-bar-btn {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar-btn:hover,
+.search-bar-btn:focus-visible {
+    background-color: var(--color-primary-light);
+    outline: none;
+}
+
+/* CTA Button */
+.voir-offres-btn {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-secondary);
+    text-decoration: none;
+    border: var(--border-width) solid var(--color-secondary);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.voir-offres-btn span {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    :root {
+        --font-size-h1: 3rem;
+        --font-size-h2: 2rem;
+    }
+
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-content {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    :root {
+        --font-size-base: 1rem;
+      }
+
+    .auth-btns ul {
+        flex-direction: column;
+    }
+
+    .icon {
+        height: 2rem;
+    }
+
+    .search-bar {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .voir-offres-btn {
+        font-size: 1rem;
+    }
+}
