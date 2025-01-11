@@ -91,6 +91,11 @@ header {
     font-weight: 400;
 }
 
+/* Icons */
+.icon{
+    font-size: 1.5rem;
+}
+
 /* Navigation */
 .auth-btns ul {
     display: flex;
@@ -189,7 +194,9 @@ main {
     background-color: var(--color-primary-light);
     outline: none;
 }
-
+.search-icon{
+    color: var(--color-white);
+}
 /* CTA Button */
 .voir-offres-btn {
     display: inline-flex;
@@ -199,12 +206,24 @@ main {
     border: var(--border-width) solid var(--color-secondary);
     border-radius: var(--border-radius);
     padding: var(--spacing-sm) var(--spacing-md);
+    transition: all 0.3s ease;
+}
+.voir-offres-btn:hover,
+.voir-offres-btn:focus-visible {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    outline: none;
+    transform: translateY(-2px);
+    
 }
 
 .voir-offres-btn span {
     display: inline-block;
     text-align: center;
     width: 100%;
+}
+.recrutement-icon{
+    font-size: 2rem;
 }
 
 /* Media Queries */
@@ -231,10 +250,6 @@ main {
 
     .auth-btns ul {
         flex-direction: column;
-    }
-
-    .icon {
-        height: 2rem;
     }
 
     .search-bar {

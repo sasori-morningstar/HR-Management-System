@@ -9,7 +9,15 @@
     <!-- Preload critical assets -->
     <link rel="preload" href="static/css/style.css" as="style">
     <link rel="preload" href="static/img/background-img.jpg" as="image">
+    <link rel="preload" href="/static/icons/css/fontawesome.css" as="style">
+    <link rel="preload" href="/static/icons/css/brands.css" as="style">
+    <link rel="preload" href="/static/icons/css/solid.css" as="style">
+
     <link rel="stylesheet" href="static/css/style.css">
+    <!-- Font Awesome Icons-->
+    <link href="/static/icons/css/fontawesome.css" rel="stylesheet" />
+    <link href="/static/icons/css/brands.css" rel="stylesheet" />
+    <link href="/static/icons/css/solid.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -35,11 +43,11 @@
                     <input type="search" id="job-search" class="search-bar" placeholder="Quel poste recherchez-vous ?"
                         aria-label="Rechercher un poste">
                     <button class="search-bar-btn" type="submit" aria-label="Rechercher">
-                        <img class="icon" src="static/icons/search.png" alt="Search" aria-hidden="true"/>
+                        <i class="icon search-icon fa-solid fa-search"></i>
                     </button>
                 </form>
                 <a class="voir-offres-btn" href="#">
-                    <img class="icon" src="static/icons/log.svg" alt="Recrutement" aria-hidden="true"/>
+                    <i class="icon recrutement-icon fa-solid fa-briefcase"></i>
                     <span>Voir tous les offres disponibles</span>
                 </a>
             </section>
