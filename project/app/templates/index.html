@@ -14,6 +14,7 @@
     <link rel="preload" href="/static/icons/css/solid.css" as="style">
 
     <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/index.css">
     <!-- Font Awesome Icons-->
     <link href="/static/icons/css/fontawesome.css" rel="stylesheet" />
     <link href="/static/icons/css/brands.css" rel="stylesheet" />
@@ -22,18 +23,7 @@
 
 <body>
     <div class="main-container">
-        <header>
-            <div class="logo">
-                <h1>RH</h1>
-                <h3 class="company-name">@Manini Inc</h3>
-            </div>
-            <nav class="auth-btns" aria-label="Authentification">
-                <ul>
-                    <li><a href="#" class="btn-register">S'enregistrer</a></li>
-                    <li><a href="#" class="btn-login">S'authentifier</a></li>
-                </ul>
-            </nav>
-        </header>
+        {% include 'header.html' %}
         <main>
             <section class="main-content">
                 <img src="static/img/landing-page-pic1.png" alt="Réseau des employés collaborant ensemble" />

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Plateforme de RH Manini Inc - Démarrez votre carrière">
+    <title>RH Manini Inc - Page d'accueil</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="static/css/style.css" as="style">
+    <link rel="preload" href="static/img/background-img.jpg" as="image">
+    <link rel="preload" href="/static/icons/css/fontawesome.css" as="style">
+    <link rel="preload" href="/static/icons/css/brands.css" as="style">
+    <link rel="preload" href="/static/icons/css/solid.css" as="style">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <!-- Font Awesome Icons-->
+    <link href="/static/icons/css/fontawesome.css" rel="stylesheet" />
+    <link href="/static/icons/css/brands.css" rel="stylesheet" />
+    <link href="/static/icons/css/solid.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main-container">
+        {% include 'header.html' %}
+        <main>
+            <div class="not-member-container">
+                <img class="login-pic" src="/static/img/login-pic.png" alt="Téléphone affichant une page de login"/>
+                <h2 class="not-member-heading">Pas encore membre? <a href="#">Créez un compte</a> maintenant !</h2>
+            </div>
+            <form class="login-form-container" method="POST" action="#" role="login">
+                <div class="email-container">
+                    <label for="email">Email</label>
+                    <i class="icon email-icon fa-solid fa-at"></i>
+                    <input id="email" type="email" name="email" required>
+                </div>
+                <div class="password-container">
+                    <label for="password">Password</label>
+                    <i class="icon password-icon fa-solid fa-key"></i>
+                    <i class="icon see-password-icon fa-solid fa-eye"></i>
+                    <input id="password" type="password" name="password" required>
+                    <a href="#" class="forgot-password">Mot de passe oublié?</a>
+                </div>
+                <button class="login-btn" type="submit">Se connecter</button>
+            </form>
+        </main>
+    </div>
+</body>
+
+</html>
