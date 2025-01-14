@@ -10,7 +10,7 @@
     --color-background-solid: rgba(0, 0, 88, 1);
     --color-background: rgba(0, 0, 88, 0.95);
     --color-white: #ffffff;
-    --color-gray-100: #f3f4f6;
+    --color-gray: rgba(142, 142, 147, 1);
 
     /* Typography */
     --font-primary: "PT Serif", serif;
@@ -37,6 +37,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+input:-internal-autofill-selected {
+    background-color: transparent !important; /* Annuler l'arrière-plan personnalisé */
+    color: inherit !important; /* Réinitialiser la couleur de texte */
 }
 
 /* Base Styles */
@@ -228,109 +232,6 @@ main {
 .recrutement-icon{
     font-size: 2rem;
 }
-/*Login form*/
-.login-form-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    width: 600px;
-}
-.login-form-container .icon{
-    font-size: 2rem;
-    top: 1.3rem;
-    position: absolute;
-}
-.email-container,
-.password-container{
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-    position: relative;
-}
-.email-icon,
-.password-icon{
-    left: var(--spacing-md);
-}
-.see-password-icon{
-    right: var(--spacing-md);
-    cursor: pointer;
-}
-
-#email{
-    padding: 1rem var(--spacing-md) 1rem 5rem;
-}
-#password{
-    padding: 1rem 5rem;
-}
-#email,
-#password{
-    font-size: 2rem;
-    background-color: transparent;
-    border-radius: var(--border-radius);
-    border: var(--border-width) solid var(--color-white);
-    border-radius: var(--border-radius);
-    outline: none;
-    color: var(--color-white);
-}
-.email-container label{
-    width: 100px;
-}
-.password-container label{
-    width: 140px;
-}
-.email-container label,
-.password-container label{
-    position: absolute;
-    background-color: var(--color-background-solid);
-    text-align: center;
-    top: -1.2rem;
-    left: var(--spacing-md);
-}
-.forgot-password{
-    color: var(--color-white);
-    transition: all 0.3s ease;
-}
-.forgot-password:hover,
-.forgot-password:focus-visible{
-    color: var(--color-primary);
-}
-.login-btn{
-    background-color: var(--color-secondary);
-    border: none;
-    border-radius: var(--border-radius);
-    padding: var(--spacing-sm);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: var(--color-background);
-    font-size: var(--font-size-base);
-    text-align: center;
-}
-.login-btn:hover,
-.login-btn:focus-visible{
-    background-color: var(--color-secondary-light);
-    transform: translateY(-2px);
-}
-/* Not member */
-.not-member-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--spacing-md);
-    max-width: 620px;
-    text-align: center;
-}
-.not-member-heading{
-    font-weight: 400;
-}
-.not-member-heading a {
-    color: var(--color-primary);
-    text-decoration: none;
-}
-.login-pic{
-    position: relative;
-    left: -2rem;
-}
 /* Media Queries */
 @media screen and (max-width: 768px) {
     :root {
@@ -369,30 +270,5 @@ main {
 
     .voir-offres-btn {
         font-size: 1rem;
-    }
-    .email-container label{
-        width: 70px;
-    }
-    .password-container label{
-        width: 100px;
-    }
-    .email-container label,
-    .password-container label{
-        top:-0.85rem;
-    }
-    #email,
-    #password{
-        font-size: 1rem;
-    }
-    #email{
-        padding: 1rem var(--spacing-md) 1rem 4rem;
-    }
-    #password{
-        padding: 1rem 4rem;
-    }
-    .login-form-container .icon{
-        font-size: 1.5rem;
-        top: 1rem;
-        position: absolute;
     }
 }

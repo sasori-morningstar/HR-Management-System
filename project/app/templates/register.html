@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Plateforme de RH Manini Inc - Démarrez votre carrière">
+    <title>RH Manini Inc - Page d'accueil</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="static/css/style.css" as="style">
+    <link rel="preload" href="static/img/background-img.jpg" as="image">
+    <link rel="preload" href="/static/icons/css/fontawesome.css" as="style">
+    <link rel="preload" href="/static/icons/css/brands.css" as="style">
+    <link rel="preload" href="/static/icons/css/solid.css" as="style">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/register.css">
+    <!-- Font Awesome Icons-->
+    <link href="/static/icons/css/fontawesome.css" rel="stylesheet" />
+    <link href="/static/icons/css/brands.css" rel="stylesheet" />
+    <link href="/static/icons/css/solid.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main-container">
+        {% include 'header.html' %}
+        <main>
+            <div class="not-member-container">
+                <div class="register-steps">
+                    <div class="step not-passed-step"><span>1</span></div>
+                    <div class="pipe not-passed-pipe pipe1-2"></div>
+                    <div class="step not-passed-step"><span>2</span></div>
+                    <div class="pipe not-passed-pipe pipe2-3"></div>
+                    <div class="step not-passed-step"><span>3</span></div>
+                    <div class="pipe not-passed-pipe pipe3-4"></div>
+                    <div class="step not-passed-step"><span>4</span></div>
+                </div>
+                <h2 class="not-member-heading">Vous êtes membre? <a href="/login">Connectez-vous</a> maintenant !</h2>
+            </div>
+            <form class="login-form-container" method="POST" action="#" role="login">
+                <!-- First step elements-->
+                <div class="input-container email-container">
+                    <label for="email">Email</label>
+                    <i class="icon email-icon fa-solid fa-at"></i>
+                    <input id="email" type="email" name="email" required>
+                </div>
+                <div class="input-container password-container">
+                    <label for="password">Password</label>
+                    <i class="icon password-icon fa-solid fa-key"></i>
+                    <i class="icon see-password-icon fa-solid fa-eye"></i>
+                    <input id="password" type="password" name="password" required>
+                </div>
+                <div class="input-container confirm-password-container">
+                    <label for="confirm-password">Confirmation password</label>
+                    <i class="icon password-icon fa-solid fa-key"></i>
+                    <i class="icon confirm-password-icon see-password-icon fa-solid fa-eye"></i>
+                    <input id="confirm-password" type="password" name="confirm-password" required>
+                </div>
+                <!-- Second step elements-->
+                <div class="input-fullname-container">
+                    <div class="input-container firstname-container">
+                        <label for="firstname">Nom</label>
+                        <i class="icon email-icon fa-solid fa-user"></i>
+                        <input id="firstname" type="text" name="firstname" required>
+                    </div>
+                    <div class="input-container lastname-container">
+                        <label for="lastname">Prénom</label>
+                        <i class="icon email-icon fa-solid fa-user"></i>
+                        <input id="lastname" type="text" name="lastname" required>
+                    </div>
+                </div>
+                <div class="input-container date-naissance-container">
+                    <label for="date-naissance">Date de naissance</label>
+                    <i class="icon date-naissance-icon fa-solid fa-baby-carriage"></i>
+                    <input id="date-naissance" type="date" name="date-naissance" required>
+                </div>
+                <div class="input-fullname-container input-location-container1">
+                    <div class="input-container pays-container">
+                        <label for="pays">Pays</label>
+                        <i class="icon location-icon fa-solid fa-location-dot"></i>
+                        <select id="pays" name="pays" required>
+                            <option value="Algérie">Algérie</option>
+                        </select>
+                    </div>
+                    <div class="input-container ville-container">
+                        <label for="ville">Ville</label>
+                        <i class="icon location-icon fa-solid fa-location-dot"></i>
+                        <select id="ville" name="ville" required>
+                            <option value="Relizane">Relizane</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-fullname-container input-location-container2">
+                    <div class="input-container commune-container">
+                        <label for="commune">Commune</label>
+                        <i class="icon location-icon fa-solid fa-location-dot"></i>
+                        <select id="commune" name="commune" required>
+                            <option value="El H'madna">El H'madna</option>
+                        </select>
+                    </div>
+                    <div class="input-container rue-container">
+                        <label for="rue">Rue</label>
+                        <i class="icon location-icon fa-solid fa-location-dot"></i>
+                        <input id="rue" type="text" name="rue" required>
+                    </div>
+                </div>
+                <div class="input-container telephone-container">
+                    <label for="telephone">Numéro de téléphone</label>
+                    <i class="icon telephone-icon fa-solid fa-phone"></i>
+                    <input id="telephone" type="tel" name="telephone" required>
+                </div>
+                <!-- Third step elements-->
+                <div class="input-container type-compte-container">
+                    <label for="type-compte">Type de compte</label>
+                    <i class="icon type-compte-icon fa-solid fa-star"></i>
+                    <select id="type-compte" name="type-compte" required>
+                        <option value="Candidat">Candidat</option>
+                        <option value="Employé">Employé</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Agent">Agent de ressources humain</option>
+                    </select>
+                </div>
+                <div class="input-container experience-container">
+                    <div class="register-form-btn" id="experience-btn">Ajouter une expérience</div>
+                    <span class="experience">Aucune expérience ajoutée</span>
+                </div>
+                <div class="input-container formation-container">
+                    <div class="register-form-btn" id="formation-btn">Ajouter une formation</div>
+                    <span class="formation">Aucune formation ajoutée</span>
+                </div>
+                <div class="input-container competence-container">
+                    <div class="register-form-btn" id="competence-btn">Ajouter une compétence</div>
+                    <span class="competence">Aucune compétence ajoutée</span>
+                </div>
+                <div class="register-form-btn" id="continue-btn">Continuer</div>
+                <!-- Fourth step elements -->
+                 <div class="profile-pic-container">
+                    <img class="profile-pic" src="/static/img/default-profile-pic.png" alt="Photo de profile"/>
+                    <label class="register-form-btn" id="profile-pic-btn" for="profile-pic-input">Ajouter une photo de profile</label>
+                    <input class="register-form-btn" id="profile-pic-input" type="file" accept="image/*" name="profile-pic-input">
+                 </div>
+                <button class="register-form-btn" id="register-btn" class="login-btn" type="submit">Créer un compte</button>
+            </form>
+        </main>
+    </div>
+    <script src="static/js/login.js" defer></script>
+    <script src="static/js/register.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+main{
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+/* Register form */
+.confirm-password-container label{
+    width: 285px;
+}
+.firstname-container label{
+    width: 90px;
+}
+.lastname-container label{
+    width: 120px;
+}
+.date-naissance-container label{
+    width: 230px;
+}
+.telephone-container label{
+    width: 270px;
+}
+.pays-container label{
+    width: 90px;
+}
+.ville-container label{
+    width: 85px;
+}
+.commune-container label{
+    width: 150px;
+}
+.rue-container label{
+    width: 80px;
+}
+.type-compte-container label{
+    width: 210px;
+}
+.input-fullname-container{
+    display: flex;
+    gap: var(--spacing-xs);
+    width: 100%;
+}
+.input-fullname-container .input-container{
+    width: calc((50%) - (var(--spacing-xs)/2));
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+    opacity: 0; /* Hide the default icon */
+}
+#profile-pic-btn{
+    display: block;
+}
+#experience-btn,
+#competence-btn,
+#formation-btn,
+#profile-pic-btn{
+    background-color: var(--color-primary);
+    width: 100%;
+}
+#experience-btn:hover,
+#experience-btn:focus-visible,
+#competence-btn:hover,
+#competence-btn:focus-visible,
+#formation-btn:hover,
+#formation-btn:focus-visible,
+#profile-pic-btn,
+#profile-pic-btn{
+    background-color: var(--color-primary-light);
+}
+.experience,
+.formation,
+.competence{
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-md) 0 var(--spacing-md);
+}
+#profile-pic-input{
+    display: none;
+}
+.profile-pic-container{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    justify-content: center;
+    align-items: center;
+}
+.profile-pic{
+    max-width: 300px;
+}
+/* Register steps */
+.not-member-container{
+    gap: var(--spacing-xs);
+}
+.register-steps{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+.step{
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    z-index: 10;
+}
+.current-step{
+    background-color: var(--color-primary);
+}
+.not-passed-step{
+    background-color: var(--color-gray);
+}
+.passed-step{
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+}
+.pipe{
+    height: 0.8rem;
+    position: absolute;
+    width: 33%;
+    top: calc((70px / 2) - (0.8rem / 2));
+}
+.not-passed-pipe{
+    background-color: var(--color-gray);
+}
+.passed-pipe{
+    background-color: var(--color-secondary);
+}
+.pipe2-3{
+    left: 30%;
+}
+.pipe3-4{
+    left: 60%;
+}
+
+@media screen and (max-width: 620px){
+    .confirm-password-container label{
+        width: 195px;
+    }
+    .step{
+        font-size: 1.5rem;
+        height: 50px;
+        width: 50px;
+    }
+    .pipe{
+        height: 0.5rem;
+        top: calc((50px / 2) - (0.5rem / 2));
+    }
+    .input-fullname-container{
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    .input-fullname-container .input-container{
+        width: 100%;
+    }
+    .firstname-container label{
+        width: 70px;
+    }
+    .lastname-container label{
+        width: 90px;
+    }
+    .date-naissance-container label{
+        width: 160px;
+    }
+    .telephone-container label{
+        width: 190px;
+    }
+    .pays-container label{
+        width: 60px;
+    }
+    .ville-container label{
+        width: 60px;
+    }
+    .commune-container label{
+        width: 100px;
+    }
+    .rue-container label{
+        width: 60px;
+    }
+    .type-compte-container label{
+        width: 145px;
+    }
+}

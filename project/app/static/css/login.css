@@ -1,20 +1,214 @@
-main{
+main {
     justify-content: space-around;
 }
+
+/*Login form*/
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 600px;
+}
+
+.input-container .icon {
+    font-size: 2rem;
+    top: 1.3rem;
+    position: absolute;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    position: relative;
+}
+
+.email-icon,
+.password-icon,
+.date-naissance-icon,
+.telephone-icon,
+.location-icon,
+.type-compte-icon {
+    left: var(--spacing-md);
+}
+
+.see-password-icon,
+.hide-password-icon {
+    right: var(--spacing-md);
+    cursor: pointer;
+}
+
+.input-container input[type="email"],
+.input-container input[type="text"],
+.input-container input[type="date"],
+.input-container input[type="tel"],
+.input-container select {
+    padding: 1rem var(--spacing-md) 1rem 5rem;
+}
+
+.input-container input[type="password"],
+#password,
+#confirm-password {
+    padding: 1rem 5rem;
+}
+
+.input-container input[type="email"],
+.input-container input[type="password"],
+.input-container input[type="text"],
+.input-container input[type="date"],
+.input-container input[type="tel"],
+.input-container select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 2rem;
+    background-color: transparent;
+    border-radius: var(--border-radius);
+    border: var(--border-width) solid var(--color-white);
+    border-radius: var(--border-radius);
+    outline: none;
+    color: var(--color-white);
+}
+
+.email-container label {
+    width: 100px;
+}
+
+.password-container label {
+    width: 140px;
+}
+
+.input-container label {
+    position: absolute;
+    background-color: var(--color-background-solid);
+    text-align: center;
+    top: -1.2rem;
+    left: var(--spacing-md);
+}
+
+.forgot-password {
+    color: var(--color-white);
+    transition: all 0.3s ease;
+}
+
+.forgot-password:hover,
+.forgot-password:focus-visible {
+    color: var(--color-primary);
+}
+
+.register-form-btn{
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: var(--font-size-base);
+    text-align: center;
+}
+.register-form-btn:hover,
+.register-form-btn:focus-visible {
+    transform: translateY(-2px);
+}
+.login-btn,
+#continue-btn,
+#register-btn {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+}
+
+.login-btn:hover,
+.login-btn:focus-visible,
+#continue-btn:hover,
+#continue-btn:focus-visible,
+#register-btn:hover,
+#register-btn:focus-visible {
+    background-color: var(--color-secondary-light);
+}
+
+/* Not member */
+.not-member-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    max-width: 620px;
+    text-align: center;
+}
+
+.not-member-heading {
+    font-weight: 400;
+}
+
+.not-member-heading a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.login-pic {
+    position: relative;
+    left: -2rem;
+}
+
 @media screen and (max-width: 1100px) {
-    main{
+    main {
         flex-direction: column-reverse;
         justify-content: center;
         gap: var(--spacing-md);
     }
+
     /* Login */
     .login-form-container {
         width: 100%;
     }
-    .not-member-container{
+
+    .not-member-container {
         max-width: 100%;
     }
-    .login-pic{
+
+    .login-pic {
         display: none;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .email-container label {
+        width: 70px;
+    }
+
+    .password-container label {
+        width: 100px;
+    }
+
+    .input-container label {
+        top: -0.85rem;
+    }
+
+    .input-container input[type="email"],
+    .input-container input[type="text"],
+    .input-container input[type="password"],
+    .input-container input[type="date"],
+    .input-container input[type="tel"],
+    .input-container select {
+        font-size: 1rem;
+    }
+
+    .input-container input[type="email"],
+    .input-container input[type="text"],
+    .input-container input[type="date"],
+    .input-container input[type="tel"],
+    .input-container select {
+        padding: 1rem var(--spacing-md) 1rem 4rem;
+    }
+
+    .input-container input[type="password"],
+    #password,
+    #confirm-password {
+        padding: 1rem 4rem;
+    }
+
+    .input-container .icon {
+        font-size: 1.5rem;
+        top: 1rem;
+        position: absolute;
     }
 }

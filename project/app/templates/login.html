@@ -27,25 +27,26 @@
         <main>
             <div class="not-member-container">
                 <img class="login-pic" src="/static/img/login-pic.png" alt="Téléphone affichant une page de login"/>
-                <h2 class="not-member-heading">Pas encore membre? <a href="#">Créez un compte</a> maintenant !</h2>
+                <h2 class="not-member-heading">Pas encore membre? <a href="/register">Créez un compte</a> maintenant !</h2>
             </div>
             <form class="login-form-container" method="POST" action="#" role="login">
-                <div class="email-container">
+                <div class="input-container email-container">
                     <label for="email">Email</label>
                     <i class="icon email-icon fa-solid fa-at"></i>
                     <input id="email" type="email" name="email" required>
                 </div>
-                <div class="password-container">
+                <div class="input-container password-container">
                     <label for="password">Password</label>
                     <i class="icon password-icon fa-solid fa-key"></i>
                     <i class="icon see-password-icon fa-solid fa-eye"></i>
                     <input id="password" type="password" name="password" required>
                     <a href="#" class="forgot-password">Mot de passe oublié?</a>
                 </div>
-                <button class="login-btn" type="submit">Se connecter</button>
+                <button class="register-form-btn login-btn" type="submit">Se connecter</button>
             </form>
         </main>
     </div>
+    <script src="static/js/login.js" defer></script>
 </body>
 
 </html>

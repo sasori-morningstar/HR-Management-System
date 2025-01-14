@@ -6,4 +6,7 @@ def afficher_index(request):
 def afficher_login(request):
     return render(request, "login.html")
 
+def afficher_register(request):
+    return render(request, "register.html")
+
 # Create your views here.
