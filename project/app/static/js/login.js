@@ -1,4 +1,5 @@
 const showPassword = document.getElementsByClassName("see-password-icon");
+
 Array.from(showPassword).forEach((child) => {
     child.addEventListener('click', (event) => {
         // Get the clicked element

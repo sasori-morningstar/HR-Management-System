@@ -9,8 +9,10 @@
     --color-secondary-light: rgba(52, 199, 89, 0.8);
     --color-background-solid: rgba(0, 0, 88, 1);
     --color-background: rgba(0, 0, 88, 0.95);
+    --color-background-transparent: rgba(0, 0, 88, 0.8);
     --color-white: #ffffff;
     --color-gray: rgba(142, 142, 147, 1);
+    --color-danger: rgb(202, 65, 28);
 
     /* Typography */
     --font-primary: "PT Serif", serif;

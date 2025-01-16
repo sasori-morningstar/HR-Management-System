@@ -29,7 +29,8 @@
                 <img class="login-pic" src="/static/img/login-pic.png" alt="Téléphone affichant une page de login"/>
                 <h2 class="not-member-heading">Pas encore membre? <a href="/register">Créez un compte</a> maintenant !</h2>
             </div>
-            <form class="login-form-container" method="POST" action="#" role="login">
+            <form id="login-form" class="login-form-container" method="POST" action="#" role="login">
+                <div id="errors"></div>
                 <div class="input-container email-container">
                     <label for="email">Email</label>
                     <i class="icon email-icon fa-solid fa-at"></i>

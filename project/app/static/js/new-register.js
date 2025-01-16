@@ -38,20 +38,7 @@ const VALIDATORS = {
     email: email => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email),
     phone: number => /^(05|06|07)[0-9]{8}$/.test(number),
     password: password => password.length >= 8,
-    accountType: type => ["Candidat", "Employé", "Manager", "Agent"].includes(type),
-    date: date => {
-        const parsedDate = new Date(date); // Convertir la date en objet Date
-        const currentDate = new Date(); // Date actuelle
-        return (
-            parsedDate.getFullYear() > 1900 && // Année > 1900
-            parsedDate <= currentDate // Date <= date actuelle
-        );
-    },
-    startEndDate: (startDate, endDate) => {
-        const start = new Date(startDate);
-        const end = new Date(endDate);
-        return start <= end;
-    }
+    accountType: type => ["Candidat", "Employé", "Manager", "Agent"].includes(type)
 };
 class RegistrationForm {
     constructor() {
@@ -71,7 +58,7 @@ class RegistrationForm {
     initializeStepVisibility() {
         DOM.steps[this.currentStep].classList.replace('not-passed-step', 'current-step');
         DOM.buttons.register.style.display = "none";
-
+        
         Object.entries(STEP_ELEMENTS).forEach(([index, elements]) => {
             if (index != this.currentStep) {
                 elements.forEach(element => {
@@ -86,7 +73,7 @@ class RegistrationForm {
         DOM.buttons.continue.addEventListener('click', () => this.handleContinue());
         DOM.buttons.showExperience.addEventListener('click', () => this.showExperiencePopup());
         DOM.buttons.addExperience.addEventListener('click', () => this.handleAddExperience());
-
+        
         // Close popup buttons
         Array.from(DOM.buttons.closePopup).forEach(btn => {
             btn.addEventListener('click', e => {
@@ -100,18 +87,15 @@ class RegistrationForm {
         // Experience justification
         DOM.experience.justificationInput.addEventListener('change', this.handleExperienceJustification.bind(this));
 
-
         // Enter key handler
         document.addEventListener('keydown', e => {
             if (e.key === "Enter") {
-                if (DOM.experience.popup.style.display == "flex") {
-                    //Handle experience popup here
-                    e.preventDefault();
-                    this.handleAddExperience();
-                } else if (this.currentStep >= 0 && this.currentStep <= 2) {
+                if(false){
+                    //Handle popup here
+                }else if(this.currentStep >= 0 && this.currentStep <= 2){
                     e.preventDefault();
                     this.handleContinue();
-                } else if (this.currentStep == 3) {
+                }else if(this.currentStep == 3){
                     //Handle submit here
                 }
             }
@@ -131,10 +115,7 @@ class RegistrationForm {
         if (!position.value || !establishment.value || !startDate.value || !endDate.value) {
             errors.push("Veuillez remplir tous les champs");
         }
-        if(!VALIDATORS.date(startDate.value) || !VALIDATORS.date(endDate.value) || !VALIDATORS.startEndDate(startDate.value, endDate.value)) {
-            errors.push("Dates invalides");
-        }
-            
+
         this.displayErrors(errors, DOM.errors.popup);
         return errors.length === 0;
     }
@@ -142,7 +123,7 @@ class RegistrationForm {
     createExperienceElement(experienceData) {
         const element = document.createElement("div");
         element.classList.add("experience");
-
+        
         element.innerHTML = `
             <div class="experience-overview">
                 <div>
@@ -161,35 +142,6 @@ class RegistrationForm {
                 ${this.getJustificationHTML(experienceData.isJustified)}
             </div>
         `;
-        //Justifier experience existante
-        const justifierExperienceExistante = element.querySelector('.justifier-experience-input');
-        if (justifierExperienceExistante) {  // Check if element exists
-            justifierExperienceExistante.addEventListener('change', (event) => {
-                if (event.target.files.length > 0) {
-                    // Get the file from the input
-                    const file = event.target.files[0];
-
-                    // Find the index of this experience in the experiences array
-                    const experienceIndex = this.experiences.findIndex(exp =>
-                        exp.nomPoste === experienceData.nomPoste &&
-                        exp.dateDebut === experienceData.dateDebut
-                    );
-                    console.log(experienceIndex)
-
-                    if (experienceIndex !== -1) {
-                        // Update the experience data
-                        this.experiences[experienceIndex].justification = file;
-                        this.experiences[experienceIndex].isJustified = true;
-
-                        // Update the UI
-                        const etatExperience = element.querySelector('.etat-experience-container');
-                        if (etatExperience) {
-                            etatExperience.innerHTML = this.getJustificationHTML(true);
-                        }
-                    }
-                }
-            });
-        }
         // Add delete functionality
         const deleteBtn = element.querySelector('.delete-experience');
         deleteBtn.addEventListener('click', () => this.deleteExperience(element, experienceData));
@@ -198,14 +150,14 @@ class RegistrationForm {
     }
 
     getJustificationHTML(isJustified) {
-        return isJustified
+        return isJustified 
             ? '<span class="etat-experience justified">Justifiée</span>'
             : `
                 <span class="etat-experience not-justified">Non justifiée</span>
                 <label id="justifier-experience-existante${this.experiences.length}" class="justifier-experience-existante" for="justifier-experience-input${this.experiences.length}">
                     Charger une justification
                 </label>
-                <input id="justifier-experience-input${this.experiences.length}" class="justifier-experience-input" type="file" accept=".pdf,.jpg,.jpeg,.png" name="justifier-experience-input${this.experiences.length}">
+                <input id="justifier-experience-input${this.experiences.length}" class="justifier-experience-input" type="file" accept="image/*" name="justifier-experience-input${this.experiences.length}">
             `;
     }
 
@@ -222,15 +174,14 @@ class RegistrationForm {
         };
 
         this.experiences.push(experienceData);
-
+        
         // Update UI
         DOM.errors.popup.style.display = "none";
         DOM.experience.popup.style.display = "none";
         DOM.experience.noExperience.style.display = "none";
-
+        
         const experienceElement = this.createExperienceElement(experienceData);
         DOM.experience.container.appendChild(experienceElement);
-        console.log(this.experiences);
 
         // Reset form
         this.resetExperienceForm();
@@ -241,7 +192,7 @@ class RegistrationForm {
         if (index > -1) {
             this.experiences.splice(index, 1);
             element.remove();
-
+            
             if (this.experiences.length === 0) {
                 DOM.experience.noExperience.style.display = "block";
             }
@@ -293,13 +244,11 @@ class RegistrationForm {
 
             case 1:
                 const phone = getField("telephone");
-                const dateNaissance = getField("date-naissance")
-                const requiredFields = ["firstname", "lastname", "pays", "ville", "commune", "rue"];
-
+                const requiredFields = ["firstname", "lastname", "date-naissance", "pays", "ville", "commune", "rue"];
+                
                 if (requiredFields.some(field => !getField(field))) {
                     errors.push("Veuillez remplir tous les champs obligatoires");
                 }
-                if (!VALIDATORS.date(dateNaissance)) errors.push("Date de naissance invalide");
                 if (!VALIDATORS.phone(phone)) errors.push("Numéro de téléphone invalide");
                 break;
 
@@ -316,7 +265,7 @@ class RegistrationForm {
     displayErrors(errors, element) {
         element.innerHTML = "";
         element.style.display = errors.length ? "block" : "none";
-
+        
         errors.forEach(error => {
             const li = document.createElement("li");
             li.textContent = error;
@@ -368,7 +317,7 @@ class RegistrationForm {
 
     initializeCitySelect(cities) {
         const citySelect = document.getElementById("ville");
-
+        
         Object.keys(cities).forEach(city => {
             const option = document.createElement("option");
             option.value = city;
@@ -384,7 +333,7 @@ class RegistrationForm {
     updateCommunes(communes) {
         const communeSelect = document.getElementById("commune");
         communeSelect.innerHTML = '<option value="" disabled selected>Choisir une commune</option>';
-
+        
         communes.forEach(commune => {
             const option = document.createElement("option");
             option.value = commune;
@@ -395,6 +344,4 @@ class RegistrationForm {
 }
 
 // Initialize the form
-window.addEventListener('load', function () {
-    const registrationForm = new RegistrationForm();
-});
+const registrationForm = new RegistrationForm();

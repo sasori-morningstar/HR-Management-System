@@ -8,7 +8,8 @@
     <title>RH Manini Inc - Page d'accueil</title>
     <!-- Preload critical assets -->
     <link rel="preload" href="static/css/style.css" as="style">
-    <link rel="preload" href="static/img/background-img.jpg" as="image">
+    <link rel="preload" href="static/css/login.css" as="style">
+    <link rel="preload" href="static/css/register.css" as="style">
     <link rel="preload" href="/static/icons/css/fontawesome.css" as="style">
     <link rel="preload" href="/static/icons/css/brands.css" as="style">
     <link rel="preload" href="/static/icons/css/solid.css" as="style">
@@ -40,6 +41,9 @@
             </div>
             <form class="login-form-container" method="POST" action="#" role="login">
                 <!-- First step elements-->
+                <ul id="errors">
+
+                </ul>
                 <div class="input-container email-container">
                     <label for="email">Email</label>
                     <i class="icon email-icon fa-solid fa-at"></i>
@@ -87,7 +91,7 @@
                         <label for="ville">Ville</label>
                         <i class="icon location-icon fa-solid fa-location-dot"></i>
                         <select id="ville" name="ville" required>
-                            <option value="Relizane">Relizane</option>
+                            <option value="" disabled selected>Choisir une wilaya</option>
                         </select>
                     </div>
                 </div>
@@ -123,24 +127,63 @@
                 </div>
                 <div class="input-container experience-container">
                     <div class="register-form-btn" id="experience-btn">Ajouter une expérience</div>
-                    <span class="experience">Aucune expérience ajoutée</span>
+                    <span id="no-experience">Aucune expérience ajoutée</span>
+                    
+                </div>
+                <div id="experience-popup" class="register-popup">
+                    <div class="login-form-container">
+                        <i class="close-popup icon fa-solid fa-circle-xmark"></i>
+                        <h2 class="not-member-heading popup-heading">Ajouter une expérience ? <a
+                                href="/login">Remplissez</a> ce
+                            formulaire !</h2>
+                        <ul id="popup-errors"></ul>
+                        <div class="input-container nom-poste-container">
+                            <label for="nom-poste-experience">Nom de poste</label>
+                            <i class="icon location-icon fa-solid fa-briefcase"></i>
+                            <input id="nom-poste-experience" type="text" name="nom-poste-experience" required>
+                        </div>
+                        <div class="input-container nom-etablissement-container">
+                            <label for="nom-etablissement-experience">Nom d'établissement</label>
+                            <i class="icon location-icon fa-solid fa-briefcase"></i>
+                            <input id="nom-etablissement-experience" type="text" name="nom-etablissement-experience"
+                                required>
+                        </div>
+                        <div class="input-container date-debut-experience-container">
+                            <label for="date-debut-experience">Date de début</label>
+                            <i class="icon location-icon fa-solid fa-briefcase"></i>
+                            <input id="date-debut-experience" type="date" name="date-debut-experience" required>
+                        </div>
+                        <div class="input-container date-fin-experience-container">
+                            <label for="date-fin-experience">Date de fin</label>
+                            <i class="icon location-icon fa-solid fa-briefcase"></i>
+                            <input id="date-fin-experience" type="date" name="date-fin-experience" required>
+                        </div>
+                        <label class="register-form-btn" id="justifier-experience-btn"
+                            for="justifier-experience-input">Charger une justification</label>
+                        <input id="justifier-experience-input" type="file" accept=".pdf,.jpg,.jpeg,.png" name="justifier-experience-input">
+                        <div class="register-form-btn" id="ajouter-experience-btn">Ajouter</div>
+                    </div>
                 </div>
                 <div class="input-container formation-container">
                     <div class="register-form-btn" id="formation-btn">Ajouter une formation</div>
-                    <span class="formation">Aucune formation ajoutée</span>
+                    <span id="no-formation">Aucune formation ajoutée</span>
                 </div>
                 <div class="input-container competence-container">
                     <div class="register-form-btn" id="competence-btn">Ajouter une compétence</div>
-                    <span class="competence">Aucune compétence ajoutée</span>
+                    <span id="no-competence">Aucune compétence ajoutée</span>
                 </div>
                 <div class="register-form-btn" id="continue-btn">Continuer</div>
                 <!-- Fourth step elements -->
-                 <div class="profile-pic-container">
-                    <img class="profile-pic" src="/static/img/default-profile-pic.png" alt="Photo de profile"/>
-                    <label class="register-form-btn" id="profile-pic-btn" for="profile-pic-input">Ajouter une photo de profile</label>
-                    <input class="register-form-btn" id="profile-pic-input" type="file" accept="image/*" name="profile-pic-input">
-                 </div>
-                <button class="register-form-btn" id="register-btn" class="login-btn" type="submit">Créer un compte</button>
+                <div class="profile-pic-container">
+                    <img id="profile-pic" class="profile-pic" src="/static/img/default-profile-pic.png"
+                        alt="Photo de profile" />
+                    <label class="register-form-btn" id="profile-pic-btn" for="profile-pic-input">Ajouter une photo de
+                        profile</label>
+                    <input class="register-form-btn" id="profile-pic-input" type="file" accept="image/*"
+                        name="profile-pic-input">
+                </div>
+                <button class="register-form-btn" id="register-btn" class="login-btn" type="submit">Créer un
+                    compte</button>
             </form>
         </main>
     </div>

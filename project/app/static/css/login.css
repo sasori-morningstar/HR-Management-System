@@ -3,6 +3,17 @@ main {
 }
 
 /*Login form*/
+#errors,
+#popup-errors{
+    padding: var(--spacing-md) calc(var(--spacing-md) * 2);
+    /*border: var(--border-width) solid var(--color-danger);
+    color: var(--color-danger);*/
+    background-color: rgba(202, 65, 28, 0.5);
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    list-style-type: circle;
+    display: none;
+}
 .login-form-container {
     display: flex;
     flex-direction: column;
@@ -10,8 +21,10 @@ main {
     width: 600px;
 }
 
-.input-container .icon {
+.input-container .icon{
     font-size: 2rem;
+}
+.input-container > .icon {
     top: 1.3rem;
     position: absolute;
 }
@@ -69,20 +82,13 @@ main {
     color: var(--color-white);
 }
 
-.email-container label {
-    width: 100px;
-}
-
-.password-container label {
-    width: 140px;
-}
-
-.input-container label {
+.input-container > label {
     position: absolute;
     background-color: var(--color-background-solid);
     text-align: center;
     top: -1.2rem;
     left: var(--spacing-md);
+    padding: 0 1rem;
 }
 
 .forgot-password {
@@ -110,7 +116,8 @@ main {
 }
 .login-btn,
 #continue-btn,
-#register-btn {
+#register-btn,
+#ajouter-experience-btn {
     background-color: var(--color-secondary);
     color: var(--color-background);
 }
@@ -120,7 +127,9 @@ main {
 #continue-btn:hover,
 #continue-btn:focus-visible,
 #register-btn:hover,
-#register-btn:focus-visible {
+#register-btn:focus-visible,
+#ajouter-experience-btn:hover,
+#ajouter-experience-btn:focus-visible{
     background-color: var(--color-secondary-light);
 }
 
@@ -171,12 +180,8 @@ main {
 }
 
 @media screen and (max-width: 620px) {
-    .email-container label {
-        width: 70px;
-    }
-
-    .password-container label {
-        width: 100px;
+    .input-container label{
+        padding: 0 0.5rem;
     }
 
     .input-container label {
@@ -210,5 +215,9 @@ main {
         font-size: 1.5rem;
         top: 1rem;
         position: absolute;
+    }
+    #errors,
+    #popup-errors{
+        padding: var(--spacing-xs) calc(var(--spacing-md));
     }
 }

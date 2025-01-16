@@ -4,36 +4,6 @@ main{
     gap: var(--spacing-md);
 }
 /* Register form */
-.confirm-password-container label{
-    width: 285px;
-}
-.firstname-container label{
-    width: 90px;
-}
-.lastname-container label{
-    width: 120px;
-}
-.date-naissance-container label{
-    width: 230px;
-}
-.telephone-container label{
-    width: 270px;
-}
-.pays-container label{
-    width: 90px;
-}
-.ville-container label{
-    width: 85px;
-}
-.commune-container label{
-    width: 150px;
-}
-.rue-container label{
-    width: 80px;
-}
-.type-compte-container label{
-    width: 210px;
-}
 .input-fullname-container{
     display: flex;
     gap: var(--spacing-xs);
@@ -51,7 +21,8 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 #experience-btn,
 #competence-btn,
 #formation-btn,
-#profile-pic-btn{
+#profile-pic-btn,
+#justifier-experience-btn{
     background-color: var(--color-primary);
     width: 100%;
 }
@@ -62,16 +33,25 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 #formation-btn:hover,
 #formation-btn:focus-visible,
 #profile-pic-btn,
-#profile-pic-btn{
+#profile-pic-btn,
+#justifier-experience-btn:hover,
+#justifier-experience-btn:focus-visible{
     background-color: var(--color-primary-light);
 }
-.experience,
-.formation,
-.competence{
+#no-experience,
+#no-formation,
+#no-competence{
     display: block;
     padding: var(--spacing-xs) var(--spacing-md) 0 var(--spacing-md);
 }
-#profile-pic-input{
+.experience{
+    padding: var(--spacing-xs) var(--spacing-md) 0 var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+}
+#justifier-experience-input,
+#profile-pic-input,
+.justifier-experience-input{
     display: none;
 }
 .profile-pic-container{
@@ -82,7 +62,58 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     align-items: center;
 }
 .profile-pic{
-    max-width: 300px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+/* Popups for 3th step*/
+.register-popup{
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-background-transparent);
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+    display: none;
+}
+.popup-heading{
+    font-size: 1.5rem;
+}
+.close-popup{
+    color: var(--color-danger);
+    cursor: pointer;
+    align-self: flex-end;
+    font-size: 2rem;
+}
+.justifier-experience-existante, .not-justified{
+    color: var(--color-primary);
+}
+.justifier-experience-existante{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.etat-experience-container{
+    display: flex;
+    justify-content: space-between;
+}
+.experience-overview{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.delete-experience{
+    color: var(--color-danger);
+    cursor: pointer;
+}
+.justified{
+    color: var(--color-secondary);
 }
 /* Register steps */
 .not-member-container{
@@ -153,32 +184,5 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     }
     .input-fullname-container .input-container{
         width: 100%;
-    }
-    .firstname-container label{
-        width: 70px;
-    }
-    .lastname-container label{
-        width: 90px;
-    }
-    .date-naissance-container label{
-        width: 160px;
-    }
-    .telephone-container label{
-        width: 190px;
-    }
-    .pays-container label{
-        width: 60px;
-    }
-    .ville-container label{
-        width: 60px;
-    }
-    .commune-container label{
-        width: 100px;
-    }
-    .rue-container label{
-        width: 60px;
-    }
-    .type-compte-container label{
-        width: 145px;
     }
 }
