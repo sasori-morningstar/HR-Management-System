@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Plateforme de RH Manini Inc - Démarrez votre carrière">
+    <title>RH Manini Inc - Page d'attente</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="static/css/style.css" as="style">
+    <link rel="preload" href="static/css/login.css" as="style">
+    <link rel="preload" href="static/css/register.css" as="style">
+    <link rel="preload" href="/static/icons/css/fontawesome.css" as="style">
+    <link rel="preload" href="/static/icons/css/brands.css" as="style">
+    <link rel="preload" href="/static/icons/css/solid.css" as="style">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/register.css">
+    <!-- Font Awesome Icons-->
+    <link href="/static/icons/css/fontawesome.css" rel="stylesheet" />
+    <link href="/static/icons/css/brands.css" rel="stylesheet" />
+    <link href="/static/icons/css/solid.css" rel="stylesheet" />
+    <style>
+        .login-form-container{
+            gap: 1.5rem;
+        }
+        .not-member-container {
+            width: 600px;
+        }
+        p{
+            text-indent: 2rem;
+        }
+        .etat-compte-text{
+            display: block;
+        }
+        .en-attente-header h1, .en-attente-header h2{
+            font-weight: 400;
+        }
+        .en-attente-header, .etat-compte-text{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        {% include 'header.html' %}
+        <main>
+            <div class="not-member-container">
+                <div class="register-steps">
+                    <div class="step passed-step"><span>1</span></div>
+                    <div class="pipe passed-pipe pipe1-2"></div>
+                    <div class="step passed-step"><span>2</span></div>
+                    <div class="pipe passed-pipe pipe2-3"></div>
+                    <div class="step passed-step"><span>3</span></div>
+                    <div class="pipe passed-pipe pipe3-4"></div>
+                    <div class="step warning-step"><span>4</span></div>
+                </div>
+            </div>
+            <div class="login-form-container">
+                <div class="en-attente-header">
+                    <h1>Compte crée avec succés!</h1>
+                    <h2><span class="blue-text">Que faire</span> maintenant ?</h2>
+                </div>
+                <span class="etat-compte-text">Votre compte est en attente est <span class="warning-text">en attente de
+                    confirmation.</span></span>
+                <p>Pour les comptes de type <span class="blue-text">Employé, Manager ou Agent RH.</span> Vous devez
+                    attendre la confirmation de votre compte par un de vos responsables.</p>
+                <p>Ne vous inquiétez pas, une fois confirmé, vous serriez notifié par e-mail.</p>
+                <a href="/" class="en-attente-btn">Retourner à la page d'accueil</a>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

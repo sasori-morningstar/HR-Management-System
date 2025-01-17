@@ -24,7 +24,8 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 #profile-pic-btn,
 #justifier-experience-btn,
 #justifier-formation-btn,
-#justifier-competence-btn{
+#justifier-competence-btn,
+.en-attente-btn{
     background-color: var(--color-primary);
     width: 100%;
 }
@@ -41,7 +42,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 #justifier-formation-btn:hover,
 #justifier-formation-btn:focus-visible,
 #justifier-competence-btn:hover,
-#justifier-competence-btn:focus-visible{
+#justifier-competence-btn:focus-visible,
+.en-attente-btn:hover,
+.en-attente-btn:focus-visible{
     background-color: var(--color-primary-light);
 }
 #no-experience,
@@ -169,6 +172,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     background-color: var(--color-secondary);
     color: var(--color-background);
 }
+.warning-step{
+    background-color: rgb(220, 146, 43);
+}
 .pipe{
     height: 0.8rem;
     position: absolute;
@@ -187,7 +193,15 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 .pipe3-4{
     left: 60%;
 }
-
+/*Page en attente*/
+.en-attente-btn{
+    text-decoration: none;
+    color: var(--color-white);
+}
+.warning-text{
+    color: rgb(220, 146, 43);
+    font-weight: bold;
+}
 @media screen and (max-width: 620px){
     .confirm-password-container label{
         width: 195px;

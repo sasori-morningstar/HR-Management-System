@@ -234,6 +234,7 @@ main {
 .recrutement-icon{
     font-size: 2rem;
 }
+
 /* Media Queries */
 @media screen and (max-width: 768px) {
     :root {

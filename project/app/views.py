@@ -9,4 +9,7 @@ def afficher_login(request):
 def afficher_register(request):
     return render(request, "register.html")
 
+def afficher_en_attente(request):
+    return render(request, "en-attente.html")
+
 # Create your views here.

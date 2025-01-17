@@ -101,7 +101,7 @@ main {
     color: var(--color-primary);
 }
 
-.register-form-btn{
+.register-form-btn, .en-attente-btn{
     border: none;
     border-radius: var(--border-radius);
     padding: var(--spacing-sm);
