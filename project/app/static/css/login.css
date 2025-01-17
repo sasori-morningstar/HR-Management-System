@@ -117,7 +117,9 @@ main {
 .login-btn,
 #continue-btn,
 #register-btn,
-#ajouter-experience-btn {
+#ajouter-experience-btn,
+#ajouter-formation-btn,
+#ajouter-competence-btn  {
     background-color: var(--color-secondary);
     color: var(--color-background);
 }
@@ -129,7 +131,11 @@ main {
 #register-btn:hover,
 #register-btn:focus-visible,
 #ajouter-experience-btn:hover,
-#ajouter-experience-btn:focus-visible{
+#ajouter-experience-btn:focus-visible,
+#ajouter-formation-btn:hover,
+#ajouter-formation-btn:focus-visible,
+#ajouter-competence-btn:hover,
+#ajouter-competence-btn:focus-visible{
     background-color: var(--color-secondary-light);
 }
 

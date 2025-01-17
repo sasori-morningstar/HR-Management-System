@@ -22,7 +22,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 #competence-btn,
 #formation-btn,
 #profile-pic-btn,
-#justifier-experience-btn{
+#justifier-experience-btn,
+#justifier-formation-btn,
+#justifier-competence-btn{
     background-color: var(--color-primary);
     width: 100%;
 }
@@ -35,7 +37,11 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 #profile-pic-btn,
 #profile-pic-btn,
 #justifier-experience-btn:hover,
-#justifier-experience-btn:focus-visible{
+#justifier-experience-btn:focus-visible,
+#justifier-formation-btn:hover,
+#justifier-formation-btn:focus-visible,
+#justifier-competence-btn:hover,
+#justifier-competence-btn:focus-visible{
     background-color: var(--color-primary-light);
 }
 #no-experience,
@@ -44,14 +50,20 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     display: block;
     padding: var(--spacing-xs) var(--spacing-md) 0 var(--spacing-md);
 }
-.experience{
+.experience,
+.formation,
+.competence{
     padding: var(--spacing-xs) var(--spacing-md) 0 var(--spacing-md);
     display: flex;
     flex-direction: column;
 }
 #justifier-experience-input,
 #profile-pic-input,
-.justifier-experience-input{
+.justifier-experience-input,
+#justifier-formation-input,
+.justifier-formation-input,
+#justifier-competence-input,
+.justifier-competence-input{
     display: none;
 }
 .profile-pic-container{
@@ -92,23 +104,34 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     align-self: flex-end;
     font-size: 2rem;
 }
-.justifier-experience-existante, .not-justified{
+.justifier-experience-existante,
+.justifier-formation-existante,
+.justifier-competence-existante,
+.not-justified{
     color: var(--color-primary);
 }
-.justifier-experience-existante{
+.justifier-experience-existante,
+.justifier-formation-existante,
+.justifier-competence-existante{
     text-decoration: underline;
     cursor: pointer;
 }
-.etat-experience-container{
+.etat-experience-container,
+.etat-formation-container,
+.etat-competence-container{
     display: flex;
     justify-content: space-between;
 }
-.experience-overview{
+.experience-overview,
+.formation-overview,
+.competence-overview{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.delete-experience{
+.delete-experience,
+.delete-formation,
+.delete-competence{
     color: var(--color-danger);
     cursor: pointer;
 }

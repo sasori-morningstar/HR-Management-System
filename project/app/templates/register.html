@@ -100,7 +100,7 @@
                         <label for="commune">Commune</label>
                         <i class="icon location-icon fa-solid fa-location-dot"></i>
                         <select id="commune" name="commune" required>
-                            <option value="El H'madna">El H'madna</option>
+                            
                         </select>
                     </div>
                     <div class="input-container rue-container">
@@ -168,9 +168,61 @@
                     <div class="register-form-btn" id="formation-btn">Ajouter une formation</div>
                     <span id="no-formation">Aucune formation ajoutée</span>
                 </div>
+                <div id="formation-popup" class="register-popup">
+                    <div class="login-form-container">
+                        <i class="close-popup icon fa-solid fa-circle-xmark"></i>
+                        <h2 class="not-member-heading popup-heading">Ajouter une formation ? <a
+                                href="/login">Remplissez</a> ce
+                            formulaire !</h2>
+                        <ul id="popup-errors"></ul>
+                        <div class="input-container nom-formation-container">
+                            <label for="nom-formation-experience">Nom de formation</label>
+                            <i class="icon location-icon fa-solid fa-graduation-cap"></i>
+                            <input id="nom-formation" type="text" name="nom-formation" required>
+                        </div>
+                        <div class="input-container nom-etablissement-container">
+                            <label for="nom-etablissement-formation">Nom d'établissement</label>
+                            <i class="icon location-icon fa-solid fa-graduation-cap"></i>
+                            <input id="nom-etablissement-formation" type="text" name="nom-etablissement-formation"
+                                required>
+                        </div>
+                        <div class="input-container date-debut-formation-container">
+                            <label for="date-debut-formation">Date de début</label>
+                            <i class="icon location-icon fa-solid fa-graduation-cap"></i>
+                            <input id="date-debut-formation" type="date" name="date-debut-formation" required>
+                        </div>
+                        <div class="input-container date-fin-formation-container">
+                            <label for="date-fin-formation">Date de fin</label>
+                            <i class="icon location-icon fa-solid fa-graduation-cap"></i>
+                            <input id="date-fin-formation" type="date" name="date-fin-formation" required>
+                        </div>
+                        <label class="register-form-btn" id="justifier-formation-btn"
+                            for="justifier-formation-input">Charger une justification</label>
+                        <input id="justifier-formation-input" type="file" accept=".pdf,.jpg,.jpeg,.png" name="justifier-formation-input">
+                        <div class="register-form-btn" id="ajouter-formation-btn">Ajouter</div>
+                    </div>
+                </div>
                 <div class="input-container competence-container">
                     <div class="register-form-btn" id="competence-btn">Ajouter une compétence</div>
                     <span id="no-competence">Aucune compétence ajoutée</span>
+                </div>
+                <div id="competence-popup" class="register-popup">
+                    <div class="login-form-container">
+                        <i class="close-popup icon fa-solid fa-circle-xmark"></i>
+                        <h2 class="not-member-heading popup-heading">Ajouter une compétence ? <a
+                                href="/login">Remplissez</a> ce
+                            formulaire !</h2>
+                        <ul id="popup-errors"></ul>
+                        <div class="input-container nom-competence-container">
+                            <label for="nom-competence">Nom de compétence</label>
+                            <i class="icon location-icon fa-solid fa-bolt"></i>
+                            <input id="nom-competence" type="text" name="nom-competence" required>
+                        </div>
+                        <label class="register-form-btn" id="justifier-competence-btn"
+                            for="justifier-competence-input">Charger une justification</label>
+                        <input id="justifier-competence-input" type="file" accept=".pdf,.jpg,.jpeg,.png" name="justifier-competence-input">
+                        <div class="register-form-btn" id="ajouter-competence-btn">Ajouter</div>
+                    </div>
                 </div>
                 <div class="register-form-btn" id="continue-btn">Continuer</div>
                 <!-- Fourth step elements -->

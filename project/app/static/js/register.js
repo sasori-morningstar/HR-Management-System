@@ -7,6 +7,10 @@ const DOM = {
         continue: document.getElementById("continue-btn"),
         showExperience: document.getElementById("experience-btn"),
         addExperience: document.getElementById("ajouter-experience-btn"),
+        showFormation: document.getElementById("formation-btn"),
+        addFormation: document.getElementById("ajouter-formation-btn"),
+        showCompetence: document.getElementById("competence-btn"),
+        addCompetence: document.getElementById("ajouter-competence-btn"),
         closePopup: document.getElementsByClassName("close-popup")
     },
     errors: {
@@ -23,6 +27,27 @@ const DOM = {
             establishment: document.getElementById("nom-etablissement-experience"),
             startDate: document.getElementById("date-debut-experience"),
             endDate: document.getElementById("date-fin-experience")
+        }
+    },
+    formation: {
+        popup: document.getElementById("formation-popup"),
+        container: document.getElementsByClassName("formation-container")[0],
+        noFormation: document.getElementById("no-formation"),
+        justificationInput: document.getElementById("justifier-formation-input"),
+        inputs: {
+            nomFormation: document.getElementById("nom-formation"),
+            establishment: document.getElementById("nom-etablissement-formation"),
+            startDate: document.getElementById("date-debut-formation"),
+            endDate: document.getElementById("date-fin-formation")
+        }
+    },
+    competence: {
+        popup: document.getElementById("competence-popup"),
+        container: document.getElementsByClassName("competence-container")[0],
+        noCompetence: document.getElementById("no-competence"),
+        justificationInput: document.getElementById("justifier-competence-input"),
+        inputs: {
+            nomCompetence: document.getElementById("nom-competence"),
         }
     }
 };
@@ -57,8 +82,14 @@ class RegistrationForm {
     constructor() {
         this.currentStep = 0;
         this.experiences = [];
+        this.formations = [];
+        this.competences = [];
         this.experienceJustified = false;
         this.experienceJustification = null;
+        this.formationJustified = false;
+        this.formationJustification = null;
+        this.competenceJustified = false;
+        this.competenceJustification = null;
         this.initializeForm();
     }
 
@@ -86,6 +117,10 @@ class RegistrationForm {
         DOM.buttons.continue.addEventListener('click', () => this.handleContinue());
         DOM.buttons.showExperience.addEventListener('click', () => this.showExperiencePopup());
         DOM.buttons.addExperience.addEventListener('click', () => this.handleAddExperience());
+        DOM.buttons.showFormation.addEventListener('click', () => this.showFormationPopup());
+        DOM.buttons.addFormation.addEventListener('click', () => this.handleAddFormation());
+        DOM.buttons.showCompetence.addEventListener('click', () => this.showCompetencePopup());
+        DOM.buttons.addCompetence.addEventListener('click', () => this.handleAddCompetence());
 
         // Close popup buttons
         Array.from(DOM.buttons.closePopup).forEach(btn => {
@@ -99,6 +134,10 @@ class RegistrationForm {
 
         // Experience justification
         DOM.experience.justificationInput.addEventListener('change', this.handleExperienceJustification.bind(this));
+        // Formation justification
+        DOM.formation.justificationInput.addEventListener('change', this.handleFormationJustification.bind(this));
+        // Competence justification
+        DOM.competence.justificationInput.addEventListener('change', this.handleCompetenceJustification.bind(this));
 
 
         // Enter key handler
@@ -106,6 +145,12 @@ class RegistrationForm {
             if (e.key === "Enter") {
                 if (DOM.experience.popup.style.display == "flex") {
                     //Handle experience popup here
+                    e.preventDefault();
+                    this.handleAddExperience();
+                } else if (DOM.formation.popup.style.display == "flex") {
+                    e.preventDefault();
+                    this.handleAddExperience();
+                } else if (DOM.competence.popup.style.display == "flex") {
                     e.preventDefault();
                     this.handleAddExperience();
                 } else if (this.currentStep >= 0 && this.currentStep <= 2) {
@@ -131,10 +176,10 @@ class RegistrationForm {
         if (!position.value || !establishment.value || !startDate.value || !endDate.value) {
             errors.push("Veuillez remplir tous les champs");
         }
-        if(!VALIDATORS.date(startDate.value) || !VALIDATORS.date(endDate.value) || !VALIDATORS.startEndDate(startDate.value, endDate.value)) {
+        if (!VALIDATORS.date(startDate.value) || !VALIDATORS.date(endDate.value) || !VALIDATORS.startEndDate(startDate.value, endDate.value)) {
             errors.push("Dates invalides");
         }
-            
+
         this.displayErrors(errors, DOM.errors.popup);
         return errors.length === 0;
     }
@@ -258,6 +303,292 @@ class RegistrationForm {
         this.experienceJustification = null;
     }
 
+    handleExperienceJustification() {
+        if (DOM.experience.justificationInput.files.length > 0) {
+            this.experienceJustification = DOM.experience.justificationInput.files[0];
+            this.experienceJustified = true;
+        }
+    }
+
+    // Formation Management Methods
+    showFormationPopup() {
+        this.formationJustified = false;
+        DOM.formation.popup.style.display = "flex";
+    }
+
+    validateFormation() {
+        const errors = [];
+        const { nomFormation, establishment, startDate, endDate } = DOM.formation.inputs;
+
+        if (!nomFormation.value || !establishment.value || !startDate.value || !endDate.value) {
+            errors.push("Veuillez remplir tous les champs");
+        }
+        if (!VALIDATORS.date(startDate.value) || !VALIDATORS.startEndDate(startDate.value, endDate.value)) {
+            errors.push("Dates invalides");
+        }
+
+        this.displayErrors(errors, DOM.errors.popup);
+        return errors.length === 0;
+    }
+
+    createFormationElement(formationData) {
+        const element = document.createElement("div");
+        element.classList.add("formation");
+
+        element.innerHTML = `
+            <div class="formation-overview">
+                <div>
+                    <div>
+                        <span class="nom-formation">${formationData.nomFormation}</span> à 
+                        <span class="nom-etablissement">${formationData.nomEtablissement}</span>
+                    </div>
+                    <div>
+                        <span class="date-debut">${formationData.dateDebut}</span> - 
+                        <span class="date-fin">${formationData.dateFin}</span>
+                    </div>
+                </div>
+                <i class="icon delete-formation fa-solid fa-trash"></i>
+            </div>
+            <div class="etat-formation-container">
+                ${this.getFormationJustificationHTML(formationData.isJustified)}
+            </div>
+        `;
+        //Justifier formation existante
+        const justifierFormationExistante = element.querySelector('.justifier-formation-input');
+        if (justifierFormationExistante) {  // Check if element exists
+            justifierFormationExistante.addEventListener('change', (event) => {
+                if (event.target.files.length > 0) {
+                    // Get the file from the input
+                    const file = event.target.files[0];
+
+                    // Find the index of this formation in the formations array
+                    const formationIndex = this.formations.findIndex(form =>
+                        form.nomFormation === formationData.nomFormation &&
+                        form.dateDebut === formationData.dateDebut
+                    );
+                    console.log(formationIndex)
+
+                    if (formationIndex !== -1) {
+                        // Update the formation data
+                        this.formations[formationIndex].justification = file;
+                        this.formations[formationIndex].isJustified = true;
+
+                        // Update the UI
+                        const etatFormation = element.querySelector('.etat-formation-container');
+                        if (etatFormation) {
+                            etatFormation.innerHTML = this.getFormationJustificationHTML(true);
+                        }
+                    }
+                }
+            });
+        }
+        // Add delete functionality
+        const deleteBtn = element.querySelector('.delete-formation');
+        deleteBtn.addEventListener('click', () => this.deleteFormation(element, formationData));
+
+        return element;
+    }
+
+    getFormationJustificationHTML(isJustified) {
+        return isJustified
+            ? '<span class="etat-formation justified">Justifiée</span>'
+            : `
+                <span class="etat-formation not-justified">Non justifiée</span>
+                <label id="justifier-formation-existante${this.formations.length}" class="justifier-formation-existante" for="justifier-formation-input${this.formations.length}">
+                    Charger une justification
+                </label>
+                <input id="justifier-formation-input${this.formations.length}" class="justifier-formation-input" type="file" accept=".pdf,.jpg,.jpeg,.png" name="justifier-formation-input${this.formations.length}">
+            `;
+    }
+
+    handleAddFormation() {
+        if (!this.validateFormation()) return;
+
+        const formationData = {
+            nomFormation: DOM.formation.inputs.nomFormation.value,
+            nomEtablissement: DOM.formation.inputs.establishment.value,
+            dateDebut: DOM.formation.inputs.startDate.value,
+            dateFin: DOM.formation.inputs.endDate.value,
+            isJustified: this.formationJustified,
+            justification: this.formationJustification
+        };
+
+        this.formations.push(formationData);
+
+        // Update UI
+        DOM.errors.popup.style.display = "none";
+        DOM.formation.popup.style.display = "none";
+        DOM.formation.noFormation.style.display = "none";
+
+        const formationElement = this.createFormationElement(formationData);
+        DOM.formation.container.appendChild(formationElement);
+        console.log(this.formations);
+
+        // Reset form
+        this.resetFormationForm();
+    }
+
+    deleteFormation(element, formationData) {
+        const index = this.formations.indexOf(formationData);
+        if (index > -1) {
+            this.formations.splice(index, 1);
+            element.remove();
+
+            if (this.formations.length === 0) {
+                DOM.formation.noFormation.style.display = "block";
+            }
+        }
+    }
+
+    resetFormationForm() {
+        const { nomPoste, establishment, startDate, endDate } = DOM.formation.inputs;
+        nomPoste.value = "";
+        establishment.value = "";
+        startDate.value = "";
+        endDate.value = "";
+        this.experienceJustified = false;
+        this.experienceJustification = null;
+    }
+
+    handleFormationJustification() {
+        if (DOM.formation.justificationInput.files.length > 0) {
+            this.formationJustification = DOM.formation.justificationInput.files[0];
+            this.formationJustified = true;
+        }
+    }
+
+    // Competence Management Methods
+    showCompetencePopup() {
+        this.competenceJustified = false;
+        DOM.competence.popup.style.display = "flex";
+    }
+
+    validateCompetence() {
+        const errors = [];
+        const { nomCompetence } = DOM.competence.inputs;
+
+        if (!nomCompetence.value) {
+            errors.push("Veuillez remplir tous les champs");
+        }
+
+        this.displayErrors(errors, DOM.errors.popup);
+        return errors.length === 0;
+    }
+
+    createCompetenceElement(competenceData) {
+        const element = document.createElement("div");
+        element.classList.add("competence");
+
+        element.innerHTML = `
+            <div class="competence-overview">
+                <div>
+                    <div>
+                        <span class="nom-competence">${competenceData.nomCompetence}</span> 
+                    </div>
+                </div>
+                <i class="icon delete-competence fa-solid fa-trash"></i>
+            </div>
+            <div class="etat-competence-container">
+                ${this.getCompetenceJustificationHTML(competenceData.isJustified)}
+            </div>
+        `;
+        //Justifier competence existante
+        const justifierCompetenceExistante = element.querySelector('.justifier-competence-input');
+        if (justifierCompetenceExistante) {  // Check if element exists
+            justifierCompetenceExistante.addEventListener('change', (event) => {
+                if (event.target.files.length > 0) {
+                    // Get the file from the input
+                    const file = event.target.files[0];
+
+                    // Find the index of this competence in the competences array
+                    const competenceIndex = this.competences.findIndex(form =>
+                        form.nomCompetence === competenceData.nomCompetence
+                    );
+                    console.log(competenceIndex)
+
+                    if (competenceIndex !== -1) {
+                        // Update the formation data
+                        this.competences[competenceIndex].justification = file;
+                        this.competences[competenceIndex].isJustified = true;
+
+                        // Update the UI
+                        const etatCompetence = element.querySelector('.etat-competence-container');
+                        if (etatCompetence) {
+                            etatCompetence.innerHTML = this.getCompetenceJustificationHTML(true);
+                        }
+                    }
+                }
+            });
+        }
+        // Add delete functionality
+        const deleteBtn = element.querySelector('.delete-competence');
+        deleteBtn.addEventListener('click', () => this.deleteCompetence(element, competenceData));
+
+        return element;
+    }
+
+    getCompetenceJustificationHTML(isJustified) {
+        return isJustified
+            ? '<span class="etat-competence justified">Justifiée</span>'
+            : `
+                <span class="etat-competence not-justified">Non justifiée</span>
+                <label id="justifier-competence-existante${this.competences.length}" class="justifier-competence-existante" for="justifier-competence-input${this.competences.length}">
+                    Charger une justification
+                </label>
+                <input id="justifier-competence-input${this.competences.length}" class="justifier-competence-input" type="file" accept=".pdf,.jpg,.jpeg,.png" name="justifier-competence-input${this.competences.length}">
+            `;
+    }
+
+    handleAddCompetence() {
+        if (!this.validateCompetence()) return;
+
+        const competenceData = {
+            nomCompetence: DOM.competence.inputs.nomCompetence.value,
+            isJustified: this.competenceJustified,
+            justification: this.competenceJustification
+        };
+
+        this.competences.push(competenceData);
+
+        // Update UI
+        DOM.errors.popup.style.display = "none";
+        DOM.competence.popup.style.display = "none";
+        DOM.competence.noCompetence.style.display = "none";
+
+        const competenceElement = this.createCompetenceElement(competenceData);
+        DOM.competence.container.appendChild(competenceElement);
+        console.log(this.competences);
+
+        // Reset form
+        this.resetCompetenceForm();
+    }
+
+    deleteCompetence(element, competenceData) {
+        const index = this.competences.indexOf(competenceData);
+        if (index > -1) {
+            this.competences.splice(index, 1);
+            element.remove();
+
+            if (this.competences.length === 0) {
+                DOM.competence.noCompetence.style.display = "block";
+            }
+        }
+    }
+
+    resetCompetenceForm() {
+        const { nomCompetence } = DOM.competence.inputs;
+        nomCompetence.value = "";
+        this.competenceJustified = false;
+        this.competenceJustification = null;
+    }
+
+    handleCompetenceJustification() {
+        if (DOM.competence.justificationInput.files.length > 0) {
+            this.competenceJustification = DOM.competence.justificationInput.files[0];
+            this.competenceJustified = true;
+        }
+    }
+
     handleProfilePicUpdate(event) {
         const file = event.target.files[0];
         if (file) {
@@ -266,13 +597,6 @@ class RegistrationForm {
                 document.getElementById('profile-pic').src = e.target.result;
             };
             reader.readAsDataURL(file);
-        }
-    }
-
-    handleExperienceJustification() {
-        if (DOM.experience.justificationInput.files.length > 0) {
-            this.experienceJustification = DOM.experience.justificationInput.files[0];
-            this.experienceJustified = true;
         }
     }
 
