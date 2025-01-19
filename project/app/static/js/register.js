@@ -18,6 +18,7 @@ const DOM = {
         main: document.getElementById("errors"),
         popup: document.getElementById("popup-errors")
     },
+    success: document.getElementById("success"),
     experience: {
         popup: document.getElementById("experience-popup"),
         container: document.getElementsByClassName("experience-container")[0],
@@ -109,7 +110,23 @@ class RegistrationForm {
                 elements.forEach(element => {
                     document.querySelector(element).style.display = "none";
                 });
+            } else {
+                elements.forEach(element => {
+                    document.querySelector(element).style.display = "flex";
+                });
             }
+        });
+        if (DOM.buttons.continue.style.display == "none") {
+            DOM.buttons.continue.style.display = "block";
+        }
+    }
+    resetAllSteps() {
+        Array.from(DOM.steps).forEach(step => {
+            step.classList.replace('passed-step', 'not-passed-step');
+            step.classList.replace('current-step', 'not-passed-step');
+        });
+        Array.from(DOM.pipes).forEach(pipe => {
+            pipe.classList.replace('passed-pipe', 'not-passed-pipe');
         });
     }
 
@@ -728,7 +745,7 @@ class RegistrationForm {
     }
     async handleFormSubmit() {
         const formData = new FormData();
-        
+
         // Add basic text fields
         formData.append("email", document.getElementById("email").value);
         formData.append("password", document.getElementById("password").value);
@@ -742,13 +759,13 @@ class RegistrationForm {
         formData.append("rue", document.getElementById("rue").value);
         formData.append("telephone", document.getElementById("telephone").value);
         formData.append("typeCompte", document.getElementById("type-compte").value);
-    
+
         // Add profile picture if exists
         const profilePic = document.getElementById("profile-pic-input").files[0];
         if (profilePic) {
             formData.append("profilePic", profilePic);
         }
-    
+
         // Add experiences
         this.experiences.forEach((exp, index) => {
             formData.append(`experiences[${index}][nomPoste]`, exp.nomPoste);
@@ -760,7 +777,7 @@ class RegistrationForm {
                 formData.append(`experiences[${index}][justification]`, exp.justification);
             }
         });
-    
+
         // Add formations
         this.formations.forEach((formation, index) => {
             formData.append(`formations[${index}][nomFormation]`, formation.nomFormation);
@@ -772,7 +789,7 @@ class RegistrationForm {
                 formData.append(`formations[${index}][justification]`, formation.justification);
             }
         });
-    
+
         // Add competences
         this.competences.forEach((competence, index) => {
             formData.append(`competences[${index}][nomCompetence]`, competence.nomCompetence);
@@ -781,7 +798,7 @@ class RegistrationForm {
                 formData.append(`competences[${index}][justification]`, competence.justification);
             }
         });
-    
+
         try {
             const response = await fetch("register", {
                 method: "POST",
@@ -791,18 +808,27 @@ class RegistrationForm {
                 },
                 body: formData  // Send FormData instead of JSON
             });
-    
+
             if (response.ok) {
                 const result = await response.json();
-                console.log("Success:", result);
-                alert("Form submitted successfully!");
-            } else {
-                console.error("Error:", response.status, response.statusText);
-                alert("Failed to submit the form.");
+                if (result.success) {
+                    DOM.success.innerText = "Compte crée avec succés !"
+                    DOM.success.style.display = "block"
+                    setTimeout(() => {
+                        window.location.href = "/login";
+                    }, 2000);
+                } else {
+                    this.displayErrors(result.errors, DOM.errors.main);
+                    this.currentStep = 0;
+                    this.resetAllSteps()
+                    this.initializeStepVisibility()
+                }
             }
         } catch (error) {
-            console.error("Network Error:", error);
-            alert("An error occurred. Please try again.");
+            this.displayErrors(["An error occurred. Please try again."], DOM.errors.main);
+            this.currentStep = 0;
+            this.resetAllSteps()
+            this.initializeStepVisibility()
         }
     }
 }

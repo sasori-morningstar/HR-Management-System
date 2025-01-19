@@ -19,6 +19,7 @@
     <link href="/static/icons/css/fontawesome.css" rel="stylesheet" />
     <link href="/static/icons/css/brands.css" rel="stylesheet" />
     <link href="/static/icons/css/solid.css" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 
 <body>
@@ -29,8 +30,9 @@
                 <img class="login-pic" src="/static/img/login-pic.png" alt="Téléphone affichant une page de login"/>
                 <h2 class="not-member-heading">Pas encore membre? <a href="/register">Créez un compte</a> maintenant !</h2>
             </div>
-            <form id="login-form" class="login-form-container" method="POST" action="#" role="login">
-                <div id="errors"></div>
+            <form id="login-form" class="login-form-container" role="login">
+                <ul id="errors"></ul>
+                <div id="success"></div>
                 <div class="input-container email-container">
                     <label for="email">Email</label>
                     <i class="icon email-icon fa-solid fa-at"></i>
