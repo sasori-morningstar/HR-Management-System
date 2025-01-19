@@ -2,6 +2,7 @@
 const DOM = {
     steps: document.getElementsByClassName("step"),
     pipes: document.getElementsByClassName("pipe"),
+    form: document.getElementById("registration-form"),
     buttons: {
         register: document.getElementById("register-btn"),
         continue: document.getElementById("continue-btn"),
@@ -121,6 +122,10 @@ class RegistrationForm {
         DOM.buttons.addFormation.addEventListener('click', () => this.handleAddFormation());
         DOM.buttons.showCompetence.addEventListener('click', () => this.showCompetencePopup());
         DOM.buttons.addCompetence.addEventListener('click', () => this.handleAddCompetence());
+        DOM.form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await this.handleFormSubmit();
+        });
 
         // Close popup buttons
         Array.from(DOM.buttons.closePopup).forEach(btn => {
@@ -152,7 +157,7 @@ class RegistrationForm {
                     this.handleAddExperience();
                 } else if (DOM.competence.popup.style.display == "flex") {
                     e.preventDefault();
-                    this.handleAddExperience();
+                    this.handleAddCompetence();
                 } else if (this.currentStep >= 0 && this.currentStep <= 2) {
                     e.preventDefault();
                     this.handleContinue();
@@ -219,7 +224,7 @@ class RegistrationForm {
                         exp.nomPoste === experienceData.nomPoste &&
                         exp.dateDebut === experienceData.dateDebut
                     );
-                    console.log(experienceIndex)
+
 
                     if (experienceIndex !== -1) {
                         // Update the experience data
@@ -265,6 +270,7 @@ class RegistrationForm {
             isJustified: this.experienceJustified,
             justification: this.experienceJustification
         };
+        console.log(experienceData)
 
         this.experiences.push(experienceData);
 
@@ -275,7 +281,7 @@ class RegistrationForm {
 
         const experienceElement = this.createExperienceElement(experienceData);
         DOM.experience.container.appendChild(experienceElement);
-        console.log(this.experiences);
+
 
         // Reset form
         this.resetExperienceForm();
@@ -306,6 +312,7 @@ class RegistrationForm {
     handleExperienceJustification() {
         if (DOM.experience.justificationInput.files.length > 0) {
             this.experienceJustification = DOM.experience.justificationInput.files[0];
+            console.log(this.experienceJustification);
             this.experienceJustified = true;
         }
     }
@@ -366,7 +373,7 @@ class RegistrationForm {
                         form.nomFormation === formationData.nomFormation &&
                         form.dateDebut === formationData.dateDebut
                     );
-                    console.log(formationIndex)
+
 
                     if (formationIndex !== -1) {
                         // Update the formation data
@@ -422,7 +429,7 @@ class RegistrationForm {
 
         const formationElement = this.createFormationElement(formationData);
         DOM.formation.container.appendChild(formationElement);
-        console.log(this.formations);
+
 
         // Reset form
         this.resetFormationForm();
@@ -441,13 +448,13 @@ class RegistrationForm {
     }
 
     resetFormationForm() {
-        const { nomPoste, establishment, startDate, endDate } = DOM.formation.inputs;
-        nomPoste.value = "";
+        const { nomFormation, establishment, startDate, endDate } = DOM.formation.inputs;
+        nomFormation.value = "";
         establishment.value = "";
         startDate.value = "";
         endDate.value = "";
-        this.experienceJustified = false;
-        this.experienceJustification = null;
+        this.formationJustified = false;
+        this.formationJustification = null;
     }
 
     handleFormationJustification() {
@@ -504,7 +511,7 @@ class RegistrationForm {
                     const competenceIndex = this.competences.findIndex(form =>
                         form.nomCompetence === competenceData.nomCompetence
                     );
-                    console.log(competenceIndex)
+
 
                     if (competenceIndex !== -1) {
                         // Update the formation data
@@ -557,7 +564,7 @@ class RegistrationForm {
 
         const competenceElement = this.createCompetenceElement(competenceData);
         DOM.competence.container.appendChild(competenceElement);
-        console.log(this.competences);
+
 
         // Reset form
         this.resetCompetenceForm();
@@ -715,6 +722,88 @@ class RegistrationForm {
             option.textContent = commune;
             communeSelect.appendChild(option);
         });
+    }
+    getCSRFToken() {
+        return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    }
+    async handleFormSubmit() {
+        const formData = new FormData();
+        
+        // Add basic text fields
+        formData.append("email", document.getElementById("email").value);
+        formData.append("password", document.getElementById("password").value);
+        formData.append("confirmPassword", document.getElementById("confirm-password").value);
+        formData.append("firstname", document.getElementById("firstname").value);
+        formData.append("lastname", document.getElementById("lastname").value);
+        formData.append("dateNaissance", document.getElementById("date-naissance").value);
+        formData.append("pays", document.getElementById("pays").value);
+        formData.append("ville", document.getElementById("ville").value);
+        formData.append("commune", document.getElementById("commune").value);
+        formData.append("rue", document.getElementById("rue").value);
+        formData.append("telephone", document.getElementById("telephone").value);
+        formData.append("typeCompte", document.getElementById("type-compte").value);
+    
+        // Add profile picture if exists
+        const profilePic = document.getElementById("profile-pic-input").files[0];
+        if (profilePic) {
+            formData.append("profilePic", profilePic);
+        }
+    
+        // Add experiences
+        this.experiences.forEach((exp, index) => {
+            formData.append(`experiences[${index}][nomPoste]`, exp.nomPoste);
+            formData.append(`experiences[${index}][nomEtablissement]`, exp.nomEtablissement);
+            formData.append(`experiences[${index}][dateDebut]`, exp.dateDebut);
+            formData.append(`experiences[${index}][dateFin]`, exp.dateFin);
+            formData.append(`experiences[${index}][isJustified]`, exp.isJustified);
+            if (exp.justification) {
+                formData.append(`experiences[${index}][justification]`, exp.justification);
+            }
+        });
+    
+        // Add formations
+        this.formations.forEach((formation, index) => {
+            formData.append(`formations[${index}][nomFormation]`, formation.nomFormation);
+            formData.append(`formations[${index}][nomEtablissement]`, formation.nomEtablissement);
+            formData.append(`formations[${index}][dateDebut]`, formation.dateDebut);
+            formData.append(`formations[${index}][dateFin]`, formation.dateFin);
+            formData.append(`formations[${index}][isJustified]`, formation.isJustified);
+            if (formation.justification) {
+                formData.append(`formations[${index}][justification]`, formation.justification);
+            }
+        });
+    
+        // Add competences
+        this.competences.forEach((competence, index) => {
+            formData.append(`competences[${index}][nomCompetence]`, competence.nomCompetence);
+            formData.append(`competences[${index}][isJustified]`, competence.isJustified);
+            if (competence.justification) {
+                formData.append(`competences[${index}][justification]`, competence.justification);
+            }
+        });
+    
+        try {
+            const response = await fetch("register", {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': this.getCSRFToken()
+                    // Remove Content-Type header - it will be set automatically with boundary
+                },
+                body: formData  // Send FormData instead of JSON
+            });
+    
+            if (response.ok) {
+                const result = await response.json();
+                console.log("Success:", result);
+                alert("Form submitted successfully!");
+            } else {
+                console.error("Error:", response.status, response.statusText);
+                alert("Failed to submit the form.");
+            }
+        } catch (error) {
+            console.error("Network Error:", error);
+            alert("An error occurred. Please try again.");
+        }
     }
 }
 

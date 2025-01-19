@@ -21,6 +21,8 @@
     <link href="/static/icons/css/fontawesome.css" rel="stylesheet" />
     <link href="/static/icons/css/brands.css" rel="stylesheet" />
     <link href="/static/icons/css/solid.css" rel="stylesheet" />
+
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 
 <body>
@@ -39,7 +41,7 @@
                 </div>
                 <h2 class="not-member-heading">Vous êtes membre? <a href="/login">Connectez-vous</a> maintenant !</h2>
             </div>
-            <form class="login-form-container" method="POST" action="#" role="login">
+            <form id="registration-form" class="login-form-container" role="register" novalidate>
                 <!-- First step elements-->
                 <ul id="errors">
 
