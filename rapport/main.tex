@@ -64,107 +64,461 @@ L'agent RH pourra choisir des fonctionnalités pour un accès rapide.
 \end{figure}
 
 \subsection{Conception Graphique}
-\lipsum[8]
-
-\subsection{Manuel d'Utilisation}
-\lipsum[9]
-
-\section{Section 2}
-\lipsum[5]
-
-\section{Des commandes utiles}
-
-\textbf{Insérer une image}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{logos/logo.png}
-    \caption{Insérer une image.}
-    \label{fig:logo}
+    \includegraphics[width=0.15\textwidth]{CG/Conception-Graphique.png}
+    \caption{Barre de navigation.}
+    \label{fig:gestion-favoris-classes}
 \end{figure}
 
-ou la version raccourcie avec \texttt{\textbackslash insererfigure} : \insererfigure{logos/logo.png}{0.5\textwidth}{Insérer une image avec une commande.}{logo_raccourci}
+\subsection{Manuel d'Utilisation}
+
+Ce menu offre un accès rapide aux principales fonctionnalités du système, simplifiant la gestion des données et des recrutements.
+
+\subsubsection{Gestion des données}
+Accède à l'administration des informations stockées.
+
+\subsubsection{Gestion des recrutements}
+Permet la gestion des candidatures et du processus de recrutement.
+
+\subsubsection{Ajouter}
+Ajoute de nouvelles données au système.
+
+\subsubsection{Vider}
+Supprime ou réinitialise des données (action critique).
+
+\subsubsection{Utilisation et Précautions}
+L'utilisateur peut naviguer via les boutons. La suppression doit être effectuée avec prudence pour éviter toute perte de données.
 
 
-\textbf{Citer une figure} avec \texttt{\textbackslash ref} : \ref{fig:logo_raccourci}.\\
+\section{Gestion des Tables}
 
+\subsection{Description}
+Cette section fournit un accès direct aux tables principales constituant la base de données, notamment : Employé, Service, Congé, Contrat, Salaire, et Recrutement.  
+L'agent RH pourra effectuer les actions suivantes : insertion, modification, suppression, recherche, consultation et impression.
 
-\textbf{Insérer des expressions mathématiques} en bloc :
-\begin{equation*}
-    \int_{-\infty}^{\infty} e^{-x^2} \, \text{d}x = \sqrt{\pi}
-\end{equation*}
+\subsection{Conception Logique}
 
-ou bien en \textit{inline} : $\int_{-\infty}^{\infty} e^{-x^2} \, \text{d}x = \sqrt{\pi}$.\\
+\subsubsection{Modèle Conceptuel de Donnée}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{mcd/gestion-des-tables.png}
+    \caption{Modèle Conceptuel de Donnée: Gestion des Tables.}
+    \label{fig:gestion-tables-mcd}
+\end{figure}
 
-
-\textbf{Insérer une série de calculs}
-\begin{align*}
-    x &= 0.999\ldots \\
-    10x &= 9.999\ldots \\
-    10x - x &= 9.999\ldots - 0.999\ldots \\
-    9x &= 9 \\
-    x &= 1 \\
-    0.999\ldots &= 1
-\end{align*}
-
-
-\textbf{Insérer une liste}
+\subsubsection{Modèle Logique de Donnée}
 \begin{itemize}
-    \item Premier niveau
-    \begin{itemize}
-        \item Deuxième niveau
-        \item Un autre élément au deuxième niveau
-    \end{itemize}
-    \item Un autre élément au premier niveau\\
+    \item \textbf{User} (\underline{id\_user}, nom, prénom, email, mot\_de\_passe)
+    \item \textbf{Service} (\underline{id\_service}, nom\_service, description)
+    \item \textbf{Formation} (\underline{id\_formation}, nom\_formation, description, date\_début, date\_fin, id\_user*)
+    \item \textbf{Compétence} (\underline{id\_compétence}, nom\_compétence, niveau, id\_user*)
+    \item \textbf{Expérience} (\underline{id\_expérience}, poste, entreprise, date\_début, date\_fin, id\_user*)
+    \item \textbf{Contrat} (\underline{id\_contrat}, type\_contrat, date\_début, date\_fin, salaire, id\_user*)
+    \item \textbf{Salaire} (\underline{id\_salaire}, montant, date\_paiement, période, id\_contrat*)
+    \item \textbf{Congé} (\underline{id\_congé}, date\_début, date\_fin, type\_congé, id\_user*)
+    \item \textbf{Recrutement} (\underline{id\_recrutement}, poste, date\_recrutement, statut, id\_user*, id\_service*)
+    \item \textbf{Demande} (\underline{id\_demande}, type\_demande, description, date\_création, id\_user*)
+    \item \textbf{Account} (\underline{id\_account}, type\_account, statut, id\_user*)
 \end{itemize}
 
 
-\textbf{Insérer un tableau simple} \\
-\begin{table}[H]
+
+\subsubsection{Diagramme de Classes}
+\begin{figure}[H]
     \centering
-    \begin{tabular}{|c|c|c|}
-        \hline
-        A & B & C \\
-        \hline
-        1 & 2 & 3 \\
-        4 & 5 & 6 \\
-        \hline
-    \end{tabular}
-    \caption{Un tableau simple.}
-    \label{tab:tableau_simple}
-\end{table}
+    \includegraphics[width=1\textwidth]{classes/gestion-de-tables.png}
+    \caption{Diagramme de Classes: Gestion des Tables.}
+    \label{fig:gestion-tables-classes}
+\end{figure}
 
+\section{Gestion du Personnel}
 
-\textbf{Insérer du code} : \texttt{print("Hello, World!")}.\\
+\subsection{Description}
+L'agent RH pourra suivre les informations des employés et gérer leurs évaluations.
 
+\subsection{Conception Logique}
 
-\textbf{Insérer et référencer une boîte de code} : 
-\hyperref[exemple_code]{Code \ref*{exemple_code}}.\\
-Attention : le label (ici, \texttt{exemple\_code}) doit être écrit deux fois lors du référencement. Une fois dans le premier argument de \texttt{\textbackslash hyperref}, puis une seconde fois dans \texttt{\textbackslash ref*} :
+\subsubsection{Diagramme de Cas d'Utilisation}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{usecase/Gestion-Personnel.png}
+    \caption{Diagramme de Cas d'Utilisation: Gestion du Personnel.}
+    \label{fig:gestion-personnel-usecase}
+\end{figure}
 
-\begin{center}
-\texttt{\textbackslash hyperref[exemple\_code]\{Code \textbackslash ref*\{exemple\_code\}\}}.
-\end{center}
+\subsubsection{Modèle Logique de Donnée}
+\begin{itemize}
+    \item \textbf{Employé} (\underline{idEmployé}, nom, prénom, dateNaissance, dateEmbauche, adresse, numTéléphone, idService*)
+    \item \textbf{Historique\_Professionnel} (\underline{idHistorique}, posteOccupé, dateDébut, dateFin, idEmployé*)
+    \item \textbf{Compétence} (\underline{idCompétence}, nomCompétence, niveau, idEmployé*)
+    \item \textbf{Formation} (\underline{idFormation}, titreFormation, dateObtention, organisme, idEmployé*)
+    \item \textbf{Évaluation} (\underline{idÉvaluation}, dateÉvaluation, objectif, résultat, remarques, idEmployé*, idManager*)
+    \item \textbf{Manager} (\underline{idManager}, nom, prénom, idService*)
+\end{itemize}
 
-\begin{codebox}[exemple_code]{Un exemple de boîte de code \texttt{Python}}
-\begin{minted}{python}
-def sieve_of_eratosthenes(n):
-    '''Returns a list of all prime numbers up to n.'''
-    primes = [True] * (n + 1)
-    primes[0] = primes[1] = False  # 0 and 1 are not prime numbers
-    for i in range(2, int(n**0.5) + 1):
-        if primes[i]:
-            for j in range(i * i, n + 1, i):
-                primes[j] = False
-    return [i for i, is_prime in enumerate(primes) if is_prime]
-\end{minted}
-\end{codebox}
+\subsubsection{Diagramme de Classes}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{classes/Gestion-de-Personnel.png}
+    \caption{Diagramme de Classes: Gestion du Personnel.}
+    \label{fig:gestion-personnel-classes}
+\end{figure}
 
+\subsection{Conception Graphique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{CG/CG-Presonnel.png}
+    \caption{Interface pour la Gestion du Personnel.}
+    \label{fig:gestion-personnel-interface}
+\end{figure}
 
-\textbf{Citer une source} depuis \texttt{biblio.bib} avec \texttt{\textbackslash cite} : \cite{exemple_de_source}.\\
+\subsection{Interface Utilisateur : Gestion des Ressources Humaines}
 
+\subsubsection{Présentation générale}
 
-\textbf{Afficher une bibliographie} rapidement avec \texttt{\textbackslash insererbiblio}.
+L'interface utilisateur de RH@Manini Inc offre une vue d'ensemble des employés et permet de gérer efficacement les processus de recrutement.
 
-\insererbiblio 
+\subsubsection{Structure de l'interface}
 
+L'interface est organisée en plusieurs sections :
+
+\begin{itemize}
+\item **Barre de navigation:** Permet d'accéder aux différentes fonctionnalités du système.
+\item **Zone de recherche:** Permet de filtrer les employés en fonction de différents critères.
+\item **Tableau des employés:** Affiche les informations principales sur chaque employé (nom, poste, état, etc.).
+\item **Boutons d'action:** Proposent des actions spécifiques sur les employés (consulter, évaluer, etc.).
+\end{itemize}
+
+\subsubsection{Fonctionnalités principales}
+
+\begin{itemize}
+\item **Filtrage des employés:** Les utilisateurs peuvent filtrer les employés en fonction de critères tels que le poste, l'état de recrutement, la date d'embauche, etc.
+\item **Consultation des profils:** En cliquant sur le nom d'un employé, l'utilisateur peut accéder à son profil détaillé.
+\item **Gestion des recrutements:** L'interface permet de suivre l'état des candidatures et de gérer les différentes étapes du processus de recrutement.
+\end{itemize}
+
+\subsubsection{Tableau des employés (exemple)}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Nom & Prénom & Poste & État & Actions \\
+\hline
+Medjedoub & Ilyes & Junior Front End Developer & Recruté & Consulter, Évaluer \\
+\hline
+... & ... & ... & ... & ... \\
+\hline
+\end{tabular}
+
+\end{itemize}
+
+\subsubsection{Suivi des Informations des Employés}
+L'agent RH peut accéder à une fiche détaillée contenant :
+\begin{itemize}
+    \item Les données personnelles de l'employé.
+    \item Les historiques professionnels.
+    \item Les compétences acquises.
+    \item Les formations suivies.
+\end{itemize}
+
+\subsubsection{Gestion des Évaluations}
+L'agent RH peut :
+\begin{itemize}
+    \item Suivre les objectifs fixés et atteints par les employés.
+    \item Suivre les compétences développées.
+    \item Permettre aux managers de remplir des formulaires d’évaluation.
+    \item Générer des rapports de performance.
+\end{itemize}
+
+\subsubsection{Utilisation et Précautions}
+Les données des employés doivent être manipulées avec soin pour garantir leur confidentialité. Les évaluations doivent être justes et alignées avec les objectifs fixés.
+
+\section{Gestion des Congés}
+
+\subsection{Description}
+L'agent RH pourra gérer les demandes de congés des employés.
+
+\subsection{Conception Logique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{usecase/gestion_des_conges.png}
+    \caption{Diagramme de Cas d'Utilisation: Gestion des Congés.}
+    \label{fig:gestion-conges-usecase}
+\end{figure}
+
+\subsubsection{Modèle Logique de Donnée}
+\begin{itemize}
+    \item \textbf{Agent} (\underline{idAgent}, nomAgent, prenomAgent, dateNaissanceAgent, dateEmbaucheAgent, adresseAgent, numTelephoneAgent, photoAgent)
+    \item \textbf{Congé} (\underline{idCongé}, idAgent*, dateDébutCongé, dateFinCongé, typeCongé, statutCongé)
+    \item \textbf{TypeCongé} (\underline{idTypeCongé}, nomTypeCongé, descriptionTypeCongé)
+\end{itemize}
+
+\subsubsection{Diagramme de Classes}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{classes/gestion-des-conges.png}
+    \caption{Diagramme de Classes: Gestion des Congés.}
+    \label{fig:gestion-conges-classes}
+\end{figure}
+
+\subsection{Conception Graphique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{CG/CG-Congé.png}
+    \caption{Barre de navigation.}
+    \label{fig:gestion-conges-classes}
+\end{figure}
+
+\subsection{Interface Utilisateur : Gestion des Congés}
+
+\subsubsection{Présentation}
+L'interface permet de gérer les demandes de congés.
+
+\subsubsection{Structure}
+* Barre de navigation
+* Zone de recherche
+* Tableau des demandes
+* Boutons d'action
+
+\subsubsection{Fonctionnalités}
+* Demander un congé
+* Valider/refuser une demande
+* Suivre les congés
+
+\subsubsection{Tableau (exemple)}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Nom & Prénom & Poste & Type & Dates & Statut \\
+\hline
+... & ... & ... & ... & ... & ... \\
+\hline
+\end{tabular}
+
+\subsubsection{Précautions}
+Faire attention aux actions irréversibles.
+
+\section{Gestion des Salaires et de la Paie}
+
+\subsection{Description}
+L'agent RH pourra gérer les salaires et la paie des employés, incluant les calculs de salaires, les primes et les déductions.
+
+\subsection{Conception Logique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{usecase/gestion_des_salaires_et_de_la_paie.png}
+    \caption{Diagramme de Cas d'Utilisation: Gestion des Salaires et de la Paie.}
+    \label{fig:gestion-salaires-paie-usecase}
+\end{figure}
+
+\subsubsection{Diagramme de Classes}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{rapport/classes/gestion-des-salaires-et-de-la-paie.png}
+    \caption{Diagramme de Classes: Gestion des Salaires et de la Paie.}
+    \label{fig:gestion-salaires-paie-classes}
+\end{figure}
+
+\subsection{Conception Graphique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{CG/CG-salaire.png}
+    \caption{Barre de navigation.}
+    \label{fig:gestion-salaires-paie-classes}
+\end{figure}
+
+\subsection{Gestion des salaires}
+
+* **Vue d'ensemble:** L'interface permet de gérer les salaires des employés.
+* **Sections:** Salaires de base, primes, salaires calculés/non calculés.
+* **Actions:** Calculer, modifier, imprimer.
+* **Tableau:** Affiche les informations sur les salaires (nom, poste, salaire, statut).
+* **Flux:** Saisie des données -> Calcul -> Validation -> Paiement.
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Nom & Poste & Salaire & Statut \\
+\hline
+... & ... & ... & ... \\
+\hline
+\end{tabular}
+
+\section{Gestion des Contrats}
+
+\subsection{Description}
+L'agent RH pourra gérer les contrats des employés, y compris leur création, leur modification, leur renouvellement et leur suivi.
+
+\subsection{Conception Logique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{usecase/gestion_des_contras_uc.png}
+    \caption{Diagramme de Cas d'Utilisation: Gestion des Contrats.}
+    \label{fig:gestion-contrats-usecase}
+\end{figure}
+
+\subsubsection{Modèle Logique de Donnée}
+\begin{itemize}
+    \item \textbf{Agent} (\underline{idAgent}, nomAgent, prenomAgent, dateNaissanceAgent, dateEmbaucheAgent, adresseAgent, numTelephoneAgent, photoAgent)
+    \item \textbf{Contrat} (\underline{idContrat}, idAgent*, typeContrat, dateDebutContrat, dateFinContrat, statutContrat, salaireContrat, descriptionContrat)
+    \item \textbf{TypeContrat} (\underline{idTypeContrat}, nomTypeContrat, descriptionTypeContrat)
+\end{itemize}
+
+\subsection{Conception Graphique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{CG/CG-Contrat.png}
+    \caption{Barre de navigation.}
+    \label{fig:gestion-contrats-classes}
+\end{figure}
+
+\subsection{Gestion des contrats}
+
+* **Vue d'ensemble:** Suivi du cycle de vie des contrats.
+* **Sections:** Contrats en cours, à renouveler, confirmés.
+* **Actions:** Consulter, renouveler, annuler.
+* **Tableau:** Nom, poste, date de début, statut.
+* **Flux:** Création -> Période d'essai -> Renouvellement/Archivage.
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+Nom & Poste & Date début & Statut \\
+\hline
+... & ... & ... & ... \\
+\hline
+\end{tabular}
+
+\section{Évaluation des Performances}
+
+\subsection{Description}
+L'agent RH pourra gérer les évaluations de performance des employés, incluant la définition des critères d'évaluation, la planification des évaluations et le suivi des résultats.
+
+\subsection{Conception Logique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{usecase/evaluation_des_performances_uc.png}
+    \caption{Diagramme de Cas d'Utilisation: Évaluation des Performances.}
+    \label{fig:evaluation-performances-usecase}
+\end{figure}
+
+\subsubsection{Modèle Logique de Donnée}
+\begin{itemize}
+    \item \textbf{Agent} (\underline{idAgent}, nomAgent, prenomAgent, dateNaissanceAgent, dateEmbaucheAgent, adresseAgent, numTelephoneAgent, photoAgent)
+    \item \textbf{Evaluation} (\underline{idEvaluation}, idAgent*, dateEvaluation, noteEvaluation, commentaireEvaluation, statutEvaluation)
+    \item \textbf{CritereEvaluation} (\underline{idCritere}, nomCritere, descriptionCritere)
+    \item \textbf{EvaluationCritere} (\underline{idEvaluation*, idCritere*}, scoreCritere)
+\end{itemize}
+
+\subsubsection{Diagramme de Classes}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{classes/evaluation_des_performances.png}
+    \caption{Diagramme de Classes: Évaluation des Performances.}
+    \label{fig:evaluation-performances-classes}
+\end{figure}
+
+\section{Gestion des Recrutements}
+
+\subsection{Description}
+L'agent RH pourra gérer l'ensemble du processus de recrutement, de la publication des offres d'emploi à la sélection des candidats, y compris l'évaluation et la prise de décision finale.
+
+\subsection{Conception Logique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{usecase/gestion_des_recrutements_uc.png}
+    \caption{Diagramme de Cas d'Utilisation: Gestion des Recrutements.}
+    \label{fig:gestion-recrutements-usecase}
+\end{figure}
+
+\subsubsection{Modèle Logique de Donnée}
+\begin{itemize}
+    \item \textbf{Agent} (\underline{idAgent}, nomAgent, prenomAgent, dateNaissanceAgent, dateEmbaucheAgent, adresseAgent, numTelephoneAgent, photoAgent)
+    \item \textbf{OffreEmploi} (\underline{idOffreEmploi}, titreOffre, descriptionOffre, datePublicationOffre, dateExpirationOffre, statutOffre)
+    \item \textbf{Candidat} (\underline{idCandidat}, nomCandidat, prenomCandidat, emailCandidat, telephoneCandidat, CV, lettreMotivation)
+    \item \textbf{Candidature} (\underline{idCandidature}, idCandidat*, idOffreEmploi*, dateCandidature, statutCandidature)
+    \item \textbf{Entretien} (\underline{idEntretien}, idCandidature*, dateEntretien, typeEntretien, resultatEntretien)
+\end{itemize}
+
+\subsubsection{Diagramme de Classes}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{classes/gestion_des_recrutements.png}
+    \caption{Diagramme de Classes: Gestion des Recrutements.}
+    \label{fig:gestion-recrutements-classes}
+\end{figure}
+
+\subsection{Conception Graphique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{rapport/CG/CG-Recrutement.png}
+    \caption{Barre de navigation.}
+    \label{fig:gestion-recrutements-classes}
+\end{figure}
+
+\subsection{Gestion des recrutements}
+
+* **Vue d'ensemble:** Suivi des offres d'emploi.
+* **Sections:** Offres ouvertes, offres fermées.
+* **Actions:** Détails, modifier, clôturer.
+* **Tableau:** Poste, département, date, statut.
+* **Flux:** Création -> Candidatures -> Sélection -> Clôture.
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+Poste & Département & Date & Statut \\
+\hline
+... & ... & ... & ... \\
+\hline
+\end{tabular}
+
+\section{Analyse et Tableaux de Bord}
+
+\subsection{Description}
+L'agent RH pourra analyser les données relatives aux employés, aux recrutements, aux performances, aux salaires, et autres indicateurs importants pour la gestion des ressources humaines à travers des tableaux de bord interactifs.
+
+\subsection{Conception Logique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{usecase/analyse_et_tableaux_de_bord_uc.png}
+    \caption{Diagramme de Cas d'Utilisation: Analyse et Tableaux de Bord.}
+    \label{fig:analyse-tableaux-bord-usecase}
+\end{figure}
+
+\subsubsection{Modèle Logique de Donnée}
+\begin{itemize}
+    \item \textbf{Agent} (\underline{idAgent}, nomAgent, prenomAgent, dateNaissanceAgent, dateEmbaucheAgent, adresseAgent, numTelephoneAgent, photoAgent)
+    \item \textbf{TableauBord} (\underline{idTableauBord}, titreTableau, descriptionTableau, dateCreation, typeTableau)
+    \item \textbf{Indicateur} (\underline{idIndicateur}, idTableauBord*, nomIndicateur, valeurIndicateur, typeIndicateur)
+    \item \textbf{Analyse} (\underline{idAnalyse}, idTableauBord*, resultatAnalyse, dateAnalyse)
+\end{itemize}
+
+\subsubsection{Diagramme de Classes}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{classes/analyse_et_tableaux_de_bord.png}
+    \caption{Diagramme de Classes: Analyse et Tableaux de Bord.}
+    \label{fig:analyse-tableaux-bord-classes}
+\end{figure}
+
+\subsection{Conception Graphique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{rapport/CG/CG-Tableau-de-bord.png}
+    \caption{Barre de navigation.}
+    \label{fig:analyse-tableaux-bord-classes}
+\end{figure}
+
+\begin{tabular}{|c|c|}
+\hline
+Module & Fonctionnalité \\
+\hline
+Analyse et Tableaux de Bord & Création et gestion de tableaux de bord interactifs \\
+\hline
+Analyse des Performances & Suivi des indicateurs de performance des employés \\
+\hline
+Analyse des Recrutements & Suivi du processus de recrutement, analyse des candidatures \\
+\hline
+Analyse des Salaires & Visualisation des salaires, tendances et comparatifs \\
+\hline
+Analyse des Congés & Suivi des congés, des absences et des disponibilités des employés \\
+\hline
+\end{tabular}
 \end{document}
