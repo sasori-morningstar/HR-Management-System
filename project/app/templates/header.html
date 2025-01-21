@@ -3,10 +3,44 @@
         <h1>RH</h1>
         <h3 class="company-name">@Manini Inc</h3>
     </a>
+
+    {% if user.is_authenticated %}
+    <nav class="header-options">
+        <ul>
+            <li><a href="/" class="header-option">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Accueil</span>
+                </a></li>
+            {% if user.account_role == "m" %}
+            <li><a href="/team" class="header-option">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Équipe</span>
+                </a></li>
+            {% endif %}
+            <li><a href="/career" class="offres-btn header-option">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Offres</span>
+                </a></li>
+            <li><a href="/profile" class="profile-btn header-option">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile</span>
+                </a></li>
+            <li id="notifications-btn" class="header-option">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+            </li>
+            <li><a href="/logout" class="header-option log-out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span></span>
+                </a></li>
+        </ul>
+    </nav>
+    {% else %}
     <nav class="auth-btns" aria-label="Authentification">
         <ul>
             <li><a href="/register" class="btn-register">S'enregistrer</a></li>
             <li><a href="/login" class="btn-login">S'authentifier</a></li>
         </ul>
     </nav>
+    {% endif %}
 </header>

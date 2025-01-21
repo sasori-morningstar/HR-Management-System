@@ -82,7 +82,6 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-
 /* Logo */
 .logo {
     display: flex;
@@ -100,6 +99,9 @@ header {
 .logo h3 {
     font-weight: 400;
 }
+.company-name{
+    display: none;
+}
 
 /* Icons */
 .icon{
@@ -107,10 +109,35 @@ header {
 }
 
 /* Navigation */
-.auth-btns ul {
-    display: flex;
+.header-option{
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 2rem;
     gap: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+.header-option:hover,
+.header-option:focus-visible{
+    transform: translateY(-2px);
+}
+.log-out{
+    color: var(--color-danger);
+}
+#notifications-btn{
+    cursor: pointer;
+}
+.header-options ul, .auth-btns ul{
+    display: flex;
     list-style: none;
+    align-items: center;
+}
+.header-options ul{
+    gap: var(--spacing-md);
+}
+.auth-btns ul {
+    gap: var(--spacing-sm);
 }
 
 
@@ -236,12 +263,34 @@ main {
 }
 
 /* Media Queries */
+@media screen and (max-width: 1300px){
+    .log-out span{
+        display: none;
+    }
+}
+@media screen and (max-width: 1210px){
+    #notifications-btn span{
+        display: none;
+    }
+}
+@media screen and (max-width: 1050px){
+    .profile-btn span{
+        display: none;
+    }
+}
+@media screen and (max-width: 900px){
+    .offres-btn span{
+        display: none;
+    }
+}
 @media screen and (max-width: 768px) {
     :root {
         --font-size-h1: 3rem;
         --font-size-h2: 2rem;
     }
-
+    .header-option{
+        font-size: 1.5rem;
+    }
     .logo {
         flex-direction: column;
         align-items: flex-start;
@@ -273,5 +322,29 @@ main {
 
     .voir-offres-btn {
         font-size: 1rem;
+    }
+    header{
+        gap: var(--spacing-sm);
+    }
+    .header-options{
+        width: 100%;
+    }
+    .header-options ul{
+        justify-content: space-around;
+        gap: 0;
+    }
+    .header-option span{
+        display: none;
+    }
+}
+@media screen and (max-width: 400px) {
+    header, main{
+        padding: 1rem;
+    }
+    header{
+        align-items: center;
+    }
+    #job-search{
+        width: 90%;
     }
 }

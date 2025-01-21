@@ -1,7 +1,7 @@
 import re, datetime
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.hashers import make_password
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.hashers import check_password
@@ -10,7 +10,6 @@ from .models import Account, User, Experience, Formation, Competence
 from .functions import validate_email_address, validate_image, validate_experiences, validate_formations, validate_competences
 
 def afficher_index(request):
-
     return render(request, "index.html")
 
 def afficher_login(request):
@@ -71,6 +70,8 @@ def afficher_register(request):
         profile_pic = request.FILES.get("profilePic")
         if profile_pic:
             data["profilePic"] = profile_pic
+        #Create username
+        data["username"] = data["firstname"].lower() + "." + data["lastname"].lower()
         #Handle experiences
         experiences = []
         i = 0
@@ -162,6 +163,7 @@ def afficher_register(request):
             account_password=make_password(data["password"]),
             account_role=data["typeCompte"][0].lower(),
             account_status=status,
+            username=data["username"]
         )
         account.save()
         # Create the user
@@ -231,5 +233,10 @@ def afficher_en_attente(request):
         if request.user.account_status:
             return redirect('/')
     return render(request, "en-attente.html")
+
+def logout_user(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect('/')
 
 # Create your views here.
