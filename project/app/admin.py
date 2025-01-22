@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Account, User, Experience, Formation, Competence
+from .models import Account, User, Experience, Formation, Competence, Fonctionnalite, Favori
 
 @admin.register(Account)
 class AccountAdmin(admin.ModelAdmin):
@@ -39,3 +39,13 @@ class CompetenceAdmin(admin.ModelAdmin):
     list_filter = ('competence_is_justified',)
     search_fields = ('competence_name',)
     raw_id_fields = ('user',)
+
+@admin.register(Fonctionnalite)
+class CompetenceAdmin(admin.ModelAdmin):
+    list_display = ('fonctionnalite_titre', 'fonctionnalite_lien', 'fonctionnalite_logo')
+    search_fields = ('fonctionnalite_titre',)
+
+@admin.register(Favori)
+class FavoriAdmin(admin.ModelAdmin):
+    list_display = ('favoris_id',)
+    raw_id_fields = ('account','fonctionnalite',)

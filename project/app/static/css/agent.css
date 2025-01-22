@@ -1,0 +1,236 @@
+.main-content{
+    flex-direction: row;
+    width: 100%;
+    max-width: none;
+}
+.agent-main-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+.search-bar-container{
+    width: 100%;
+}
+#favoris-container{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: rgba(0, 0, 88, 0.5);
+    box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    width: 210px;
+    justify-content: flex-start;
+}
+#favoris-container h1{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.fonctionnalite-favoris{
+    color: white;
+    background-color: rgba(0, 0, 88, 0.8);
+    box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    line-height: 1.5rem;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+#add-fonctionnalite-favoris, #remove-fonctionnalite-favoris{
+    background-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    
+}
+
+.fonctionnalite:hover,
+.fonctionnalite:focus-visible,
+.fonctionnalite-favoris:hover,
+.fonctionnalite-favoris:focus-visible{
+    transform: translateY(-2px);
+}
+
+#add-fonctionnalite-favoris{
+    color: var(--color-primary);
+}
+#remove-fonctionnalite-favoris{
+    color: var(--color-danger);
+    margin-top: auto;
+}
+.fonctionnalite-favoris i{
+    font-size: 3rem;
+}
+.fonctionnalites-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+}
+.fonctionnalite{
+    color: white;
+    background-color: rgba(0, 0, 88, 0.8);
+    box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: 4rem var(--spacing-md);
+    border-radius: var(--border-radius);
+    line-height: 1.5rem;
+    transition: all 0.3s ease;
+    font-size: 2rem;
+    width: 300px;
+}
+.fonctionnalite i{
+    font-size: 5rem
+}
+.favori-popup{
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-background-transparent);
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+    display: none;
+}
+.close-popup{
+    color: var(--color-danger);
+    cursor: pointer;
+    align-self: flex-end;
+    font-size: 2rem;
+}
+.not-member-heading {
+    font-weight: 400;
+}
+.input-container select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 2rem;
+    background-color: transparent;
+    border-radius: var(--border-radius);
+    border: var(--border-width) solid var(--color-white);
+    border-radius: var(--border-radius);
+    outline: none;
+    color: var(--color-white);
+    padding: 1rem var(--spacing-md) 1rem 5rem;
+}
+.input-container > label {
+    position: absolute;
+    background-color: var(--color-background-solid);
+    text-align: center;
+    top: -1.2rem;
+    left: var(--spacing-md);
+    padding: 0 1rem;
+}
+.add-favori-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 600px;
+}
+
+.input-container .icon{
+    font-size: 2rem;
+    left: var(--spacing-md);
+}
+.input-container > .icon {
+    top: 1.3rem;
+    position: absolute;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    position: relative;
+}
+.register-form-btn{
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+.register-form-btn:hover, .register-form-btn:focus-visible{
+    background-color: var(--color-primary-light);
+    outline: none;
+}
+@media screen and (max-width: 1100px) {
+    .add-favori-form-container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1050px){
+    .fonctionnalite{
+        gap: var(--spacing-xs);
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius);
+        line-height: 1rem;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        width: 40%;
+        text-align: center;
+    }
+    .fonctionnalite i{
+        font-size: 2rem
+    }
+}
+@media screen and (max-width: 620px) {
+    .input-container label{
+        padding: 0 0.5rem;
+        top: -0.85rem;
+    }
+    .input-container select {
+        padding: 1rem var(--spacing-md) 1rem 4rem;
+    }
+    .input-container .icon {
+        font-size: 1.5rem;
+        top: 1rem;
+        position: absolute;
+    }
+    main{
+        align-items: normal;
+    }
+    .main-content{
+        flex-direction: column
+    }
+    #favoris-container h1{
+        display: none;
+    }
+    #favoris-container{
+        padding: var(--spacing-sm);
+        width: 100%;
+        flex-direction: row;
+        gap: var(--spacing-sm);
+        overflow-x: scroll;
+    }
+    .fonctionnalite-favoris i{
+        font-size: 2rem;
+    }
+    .fonctionnalite-favoris span{
+        display: none;
+    }
+    header, main{
+        padding: 1rem;
+    }
+}

@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ValidationError
 from django.contrib.auth.models import AbstractUser
 
+from .managers import AccountManager
 # Create your models here.
 class Account(AbstractUser):
     ACCOUNT_ROLES = [
@@ -10,16 +11,30 @@ class Account(AbstractUser):
         ('m', 'Manager'),
         ('a', 'Agent'),
     ]
-    account_created_at = models.DateTimeField(auto_now_add=True)
-    account_id= models.AutoField(primary_key=True)
+    
+    # Remove default username field
+    username = None
+    
+    # Custom fields
+    account_id = models.AutoField(primary_key=True)
     account_email = models.EmailField(max_length=255, unique=True)
-    account_password = models.CharField(max_length=255)
     account_role = models.CharField(max_length=1, choices=ACCOUNT_ROLES, default='c')
     account_status = models.BooleanField(default=False)
-    last_login = models.DateTimeField(auto_now=True)
+    account_created_at = models.DateTimeField(auto_now_add=True)
+
+    # Remove account_password as AbstractUser already provides password field
+    
+    objects = AccountManager()
+
+    USERNAME_FIELD = 'account_email'
+    REQUIRED_FIELDS = ['account_role']  # Remove account_status as it has a default value
 
     def __str__(self):
         return f"{self.account_email} - {self.get_account_role_display()}"
+
+    class Meta:
+        verbose_name = 'Account'
+        verbose_name_plural = 'Accounts'
 
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
@@ -36,6 +51,23 @@ class User(models.Model):
 
     def __str__(self):
         return f"{self.user_first_name} {self.user_last_name}"
+    
+class Fonctionnalite(models.Model):
+    fonctionnalite_id = models.AutoField(primary_key=True)
+    fonctionnalite_titre = models.CharField(max_length=50)
+    fonctionnalite_logo = models.CharField(max_length=50)
+    fonctionnalite_lien = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.fonctionnalite_titre}"
+    
+class Favori(models.Model):
+    favoris_id = models.AutoField(primary_key=True)
+    fonctionnalite = models.OneToOneField("Fonctionnalite", on_delete=models.CASCADE)
+    account = models.ForeignKey("Account", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.account} <3 {self.fonctionnalite}"
 
 class Experience(models.Model):
     experience_id = models.AutoField(primary_key=True)
