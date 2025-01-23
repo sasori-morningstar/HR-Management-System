@@ -13,6 +13,7 @@
     --color-white: #ffffff;
     --color-gray: rgba(142, 142, 147, 1);
     --color-danger: rgb(202, 65, 28);
+    --color-danger-light: rgba(202, 65, 28, 0.8);
 
     /* Typography */
     --font-primary: "PT Serif", serif;

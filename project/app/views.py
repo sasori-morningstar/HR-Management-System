@@ -54,6 +54,16 @@ def afficher_index(request):
             return render(request, "en-attente.html")
     else:
         return render(request, "visitor-index.html")
+    
+def afficher_comptes(request):
+    if request.user.is_authenticated:
+        if request.user.account_status:
+            if request.user.account_role == "a":
+                return render(request, "comptes.html", {"comptes": Account.objects.all(), "fonctionnalites": Fonctionnalite.objects.all(), "favoris": Favori.objects.filter(account=request.user), "favoris_titles": Favori.objects.filter(account=request.user).values_list('fonctionnalite__fonctionnalite_titre', flat=True)})
+        else:
+            return render(request, "en-attente.html")
+    else:
+        return render(request, "login.html")
 
 def afficher_login(request):
     if request.user.is_authenticated:

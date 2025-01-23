@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Plateforme de RH Manini Inc - Démarrez votre carrière">
+    <title>RH Manini Inc - Page d'accueil</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="static/css/style.css" as="style">
+    <link rel="preload" href="static/img/background-img.jpg" as="image">
+    <link rel="preload" href="/static/icons/css/fontawesome.css" as="style">
+    <link rel="preload" href="/static/icons/css/brands.css" as="style">
+    <link rel="preload" href="/static/icons/css/solid.css" as="style">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/agent.css">
+    <!-- Font Awesome Icons-->
+    <link href="/static/icons/css/fontawesome.css" rel="stylesheet" />
+    <link href="/static/icons/css/brands.css" rel="stylesheet" />
+    <link href="/static/icons/css/solid.css" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+
+<body>
+    <div class="main-container">
+        {% include 'header.html' %}
+        <main>
+            <section class="main-content">
+                {% include 'acces-rapide.html' %}
+                <div class="agent-comptes-main-container">
+                    <form class="search-bar-container" method="" action="" role="search">
+                        <input type="search" id="job-search" class="search-bar"
+                            placeholder="Quel compte recherchez-vous ?" aria-label="Rechercher un compte">
+                        <button class="search-bar-btn" type="submit" aria-label="Rechercher">
+                            <i class="icon search-icon fa-solid fa-search"></i>
+                        </button>
+                    </form>
+                    <div class="agent-comptes-pending-container">
+                        <h1>Demandes de confirmation de compte</h1>
+                        <div class="horizental-comptes-container">
+                            <div class="compte-card">
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Refuser</div>
+                                        <div class="btn btn-accept">Confirmer</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Refuser</div>
+                                        <div class="btn btn-accept">Confirmer</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Refuser</div>
+                                        <div class="btn btn-accept">Confirmer</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Refuser</div>
+                                        <div class="btn btn-accept">Confirmer</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Refuser</div>
+                                        <div class="btn btn-accept">Confirmer</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Refuser</div>
+                                        <div class="btn btn-accept">Confirmer</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-comptes-confirmed-container">
+                        <div class="agent-comptes-confirmed-header">
+                            <h1>Comptes confirmés</h1>
+                            <div class="btn btn-accept btn-new-account">Créer un compte</div>
+                        </div>
+                        <div class="agent-comptes-confirmed-actions">
+                            <div class="select-all-container">
+                                <div class="select-icon">
+                                    <i class="icon fa-solid fa-check"></i>
+                                </div>
+                                <span>Tout sélectionner</span>
+                            </div>
+                            <div class="comptes-confirmed-actions-btns">
+                                <div class="btn btn-reject btn-desactivate">Désactiver</div>
+                                <div class="btn btn-accept btn-modify">Modifier</div>
+                                <div class="btn btn-consult btn-print">Imprimer</div>
+                            </div>
+                        </div>
+                        <div class="comptes-container">
+                            <div class="compte-card">
+                                <div class="select-all-container">
+                                    <div class="select-one-icon">
+                                        <i class="icon fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Sélectionner</span>
+                                </div>
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Désactiver</div>
+                                        <div class="btn btn-accept">Modifier</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="select-all-container">
+                                    <div class="select-one-icon">
+                                        <i class="icon fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Sélectionner</span>
+                                </div>
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Désactiver</div>
+                                        <div class="btn btn-accept">Modifier</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="select-all-container">
+                                    <div class="select-one-icon">
+                                        <i class="icon fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Sélectionner</span>
+                                </div>
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior </h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Désactiver</div>
+                                        <div class="btn btn-accept">Modifier</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="select-all-container">
+                                    <div class="select-one-icon">
+                                        <i class="icon fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Sélectionner</span>
+                                </div>
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Désactiver</div>
+                                        <div class="btn btn-accept">Modifier</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="select-all-container">
+                                    <div class="select-one-icon">
+                                        <i class="icon fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Sélectionner</span>
+                                </div>
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Désactiver</div>
+                                        <div class="btn btn-accept">Modifier</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="compte-card">
+                                <div class="select-all-container">
+                                    <div class="select-one-icon">
+                                        <i class="icon fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Sélectionner</span>
+                                </div>
+                                <div class="compte-overview">
+                                    <img src="static/img/default-profile-pic.png" alt="Photo de profile">
+                                    <div class="compte-info">
+                                        <div class="compte-info-header">
+                                            <h2>Junior Front End Developer</h2>
+                                            <span>Ilyes Medjedoub</span>
+                                        </div>
+                                        <div class="compte-info-additional">
+                                            <span>Oran, Algérie</span>
+                                            <span>Recruté le 19/09/2024</span>
+                                            <span>Full time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="compte-pending-btns">
+                                    <div class="btn btn-consult">Consulter</div>
+                                    <div class="compte-pending-decision">
+                                        <div class="btn btn-reject">Désactiver</div>
+                                        <div class="btn btn-accept">Modifier</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="static/js/acces-rapide.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<div id="favoris-container">
+    <h1>Accès rapide</h1>
+    {% for favori in favoris %}
+    <a href="{{favori.fonctionnalite.fonctionnalite_lien}}" class="fonctionnalite-favoris fav">
+        <i class="{{favori.fonctionnalite.fonctionnalite_logo}}"></i>
+        <span>{{favori.fonctionnalite.fonctionnalite_titre}}</span>
+    </a>
+    {% endfor %}
+    <div id="add-fonctionnalite-favoris" class="fonctionnalite-favoris">
+        <i class="fa-solid fa-plus"></i>
+        <span>Ajouter</span>
+    </div>
+    <div id="remove-fonctionnalite-favoris" class="fonctionnalite-favoris">
+        <i class="fa-solid fa-trash"></i>
+        <span>Supprimer</span>
+    </div>
+    <div id="add-favoris-popup" class="favori-popup">
+        <div class="add-favori-form-container">
+            <i class="close-popup icon fa-solid fa-circle-xmark"></i>
+            <h2 class="not-member-heading popup-heading">Ajouter au favoris ? Choisissez une
+                fonctionnalité !</h2>
+            <div class="input-container type-compte-container">
+                <label for="fonctionnalite-titre">Titre de fonctionnalité</label>
+                <i class="icon fonctionnalite-icon fa-solid fa-heart"></i>
+                <select id="fonctionnalite-titre" name="fonctionnalite-titre" required>
+                    {% for fonctionnalite in fonctionnalites %}
+                    {% if fonctionnalite.fonctionnalite_titre not in favoris_titles %}
+                    <option value="{{ fonctionnalite.fonctionnalite_titre }}">
+                        {{ fonctionnalite.fonctionnalite_titre }}
+                    </option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="register-form-btn" id="ajouter-favori-btn">Ajouter</div>
+        </div>
+    </div>
+    <div id="delete-favoris-popup" class="favori-popup">
+        <div class="add-favori-form-container">
+            <i class="close-popup icon fa-solid fa-circle-xmark"></i>
+            <h2 class="not-member-heading popup-heading">Supprimer du favoris ? Choisissez une
+                fonctionnalité !</h2>
+            <div class="input-container type-compte-container">
+                <label for="fonctionnalite-titre">Titre de fonctionnalité</label>
+                <i class="icon fonctionnalite-icon fa-solid fa-heart"></i>
+                <select id="favori-titre" name="favori-titre" required>
+                    {% for favori in favoris %}
+                    <option value="{{ favori.fonctionnalite.fonctionnalite_titre }}">
+                        {{ favori.fonctionnalite.fonctionnalite_titre }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="register-form-btn" id="supprimer-favori-btn">Supprimer</div>
+        </div>
+    </div>
+</div>
